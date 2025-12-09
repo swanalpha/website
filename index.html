@@ -17,6 +17,7 @@
     name="description"
     content="Daily SPY market regime signal with a live overlay, historical backtests, and example SWAN portfolio performance."
   />
+  <link rel="icon" href="/favicon.ico" />
 
   <!-- Tailwind (local build) -->
   <link rel="stylesheet" href="assets/tailwind.css" />
@@ -34,6 +35,25 @@
   <style>
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
+    }
+    .hero-buckets {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 0.75rem;
+    }
+    .regime-comparison {
+      display: flex;
+      flex-direction: column;
+      gap: 1rem;
+    }
+    @media (min-width: 768px) {
+      .regime-comparison {
+        flex-direction: row;
+        align-items: flex-start;
+      }
+      .regime-comparison > .regime-item {
+        flex: 1 1 50%;
+      }
     }
   </style>
 </head>
@@ -67,14 +87,20 @@
               SWAN Alpha
             </span>
             is a quantitative framework for serious, hands-on investors who want equity-like returns with more controlled risk and drawdowns.
-            <ul class="mt-3 space-y-1 text-[13px]">
-              <li><span class="text-emerald-400">Regime signals</span> – data-driven regime classification to show when conditions favor taking risk and when they call for defense.</li>
-              <li><span class="text-emerald-400">Model portfolios</span> – allocations tuned to each regime, designed to balance return and drawdown. <i>(Upcoming)</i></li>
-              <li><span class="text-emerald-400">Alpha overlays</span> – tactical models (e.g., bounce / bottom tools) aiming to enhance returns without abandoning risk discipline. <i>(Upcoming)</i></li>
+            <ul class="mt-4 hero-buckets text-[13px]">
+              <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
+                <div class="text-emerald-400 font-semibold mb-1 text-lg">Regime Signals</div>
+                <div class="text-slate-300/90">Data-driven regime classification to show when conditions favor taking risk and when they call for defense.</div>
+              </li>
+              <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
+                <div class="text-emerald-400 font-semibold mb-1 text-lg">Model Portfolios</div>
+                <div class="text-slate-300/90">Allocations tuned to each regime, designed to balance return and drawdown. <i>(Upcoming)</i></div>
+              </li>
+              <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
+                <div class="text-emerald-400 font-semibold mb-1 text-lg">Alpha Overlays</div>
+                <div class="text-slate-300/90">Tactical models (e.g., pullback / bottom tools) aiming to enhance returns without abandoning risk discipline. <i>(Upcoming)</i></div>
+              </li>
             </ul>
-            <p class="text-[11px] text-slate-500">
-              No trades or portfolios are executed or managed on your behalf. All signals and results are model-based; you remain fully responsible for your own investment decisions.
-            </p>
           </div>
           <div class="space-y-3">
             <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 space-y-2">
@@ -105,25 +131,10 @@
             <div class="bg-slate-900/60 border border-slate-800 rounded-xl p-3 space-y-2">
               <div class="flex items-center justify-between">
                 <span class="text-slate-400">Live SPY Performance</span>
-                <span id="spy-live-range" class="text-[11px] text-slate-500"></span>
+                <span class="text-[11px] text-slate-500"></span>
               </div>
-              <div class="flex items-baseline gap-3">
-                <div>
-                  <div class="text-[11px] text-slate-400">Regime CAGR</div>
-                  <div id="spy-live-cagr" class="text-sm font-semibold text-emerald-400">–</div>
-                </div>
-                <div>
-                  <div class="text-[11px] text-slate-400">SPY Buy &amp; Hold CAGR</div>
-                  <div id="spy-live-cagr-bench" class="text-sm text-slate-300">–</div>
-                </div>
-                <div class="ml-auto text-right">
-                  <div class="text-[11px] text-slate-400">Regime Sharpe</div>
-                  <div id="spy-live-sharpe" class="text-sm font-semibold text-emerald-400">–</div>
-                </div>
-                <div class="text-right">
-                  <div class="text-[11px] text-slate-400">Regime MaxDD</div>
-                  <div id="spy-live-maxdd" class="text-sm font-semibold text-rose-400">–</div>
-                </div>
+              <div class="text-[12px] text-slate-400">
+                Daily live stats; see the full Regime vs. SPY comparison below.
               </div>
             </div>
           </div>
@@ -146,17 +157,50 @@
         <!-- Live performance section -->
         <section class="space-y-6">
           <h2 class="text-sm md:text-base font-semibold text-slate-100">
-            Regime-Based Exposure vs. SPY Buy &amp; Hold
+            Regime-Based Exposure vs. Buy &amp; Hold
           </h2>
-          <p class="text-[12px] text-slate-400">
-            “Regime-Based Exposure” adjusts SPY allocation based on a quantitative view of the current market regime, while “SPY Buy &amp; Hold” stays 100% invested at all times. The chart and backtest table show how this dynamic approach aims to preserve most of SPY’s long-term return with smaller drawdowns and a smoother ride—though it cannot guarantee outperformance.
-          </p>
+
+          <div class="regime-comparison">
+            <div class="regime-item text-slate-400 leading-relaxed">
+              “Regime-Based Exposure” adjusts SPY or portfolio allocation based on a quantitative view of the current market regime, while Buy &amp; Hold” stays 100% invested at all times. This dynamic approach aims to preserve most of SPY’s long-term return with much smaller drawdowns.
+            </div>
+
+            <div class="regime-item bg-slate-900/60 border border-slate-800 rounded-2xl p-3 md:p-4">
+              <div class="text-[11px] text-slate-500 mb-2 flex items-center justify-between">
+                <span>Live SPY performance comparison</span>
+                <span id="spy-live-range" class="text-[11px] text-slate-500"></span>
+              </div>
+              <div class="overflow-x-auto">
+                <table class="w-full min-w-[360px] text-[12px] text-left">
+                  <thead class="text-slate-400">
+                    <tr>
+                      <th class="py-1 pr-3 font-medium">Strategy</th>
+                      <th class="py-1 pr-3 font-medium">CAGR</th>
+                      <th class="py-1 pr-3 font-medium">Sharpe</th>
+                      <th class="py-1 pr-3 font-medium">MaxDD</th>
+                    </tr>
+                  </thead>
+                  <tbody class="text-slate-200/90">
+                    <tr>
+                      <td class="py-1 pr-3 text-slate-400">Regime-Based Exposure</td>
+                      <td id="spy-live-cagr" class="py-1 pr-3 font-semibold text-emerald-400">–</td>
+                      <td id="spy-live-sharpe" class="py-1 pr-3 font-semibold text-emerald-400">–</td>
+                      <td id="spy-live-maxdd" class="py-1 pr-3 font-semibold text-rose-400">–</td>
+                    </tr>
+                    <tr>
+                      <td class="py-1 pr-3 text-slate-400">Buy &amp; Hold</td>
+                      <td id="spy-live-cagr-bench" class="py-1 pr-3 text-slate-300">–</td>
+                      <td id="spy-live-sharpe-bench" class="py-1 pr-3 text-slate-300">–</td>
+                      <td id="spy-live-maxdd-bench" class="py-1 pr-3 text-rose-300">–</td>
+                    </tr>
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </div>
 
           <div class="space-y-3">
             <div class="flex items-center justify-between gap-2">
-              <h3 class="text-xs md:text-sm font-medium text-slate-100">
-                Live Performance since 2025-01-01
-              </h3>
               <div class="text-[11px] text-slate-500">
                 Starting value $1,000,000 · close-to-close · no costs
               </div>
@@ -233,7 +277,7 @@
             <h2 class="text-sm md:text-base font-semibold text-slate-100">
               Live SWAN Portfolio Performance
             </h2>
-            <p class="text-[12px] text-slate-400">
+            <p class="text-slate-400">
               The SWAN Portfolio is a live model portfolio that applies the SWAN Alpha regime-based allocation framework to a diversified mix of assets. It aims to improve the risk/return profile relative to a simple SPY Buy &amp; Hold approach. The chart shows its real-time performance since launch, compared with SPY and an internal SWAN Buy &amp; Hold benchmark.
             </p>
 
@@ -389,6 +433,8 @@
       const cagrBenchEl = document.getElementById('spy-live-cagr-bench');
       const sharpeEl = document.getElementById('spy-live-sharpe');
       const maxDdEl = document.getElementById('spy-live-maxdd');
+      const sharpeBenchEl = document.getElementById('spy-live-sharpe-bench');
+      const maxDdBenchEl = document.getElementById('spy-live-maxdd-bench');
 
       pill.textContent = regime;
       if (regime === 'BULL') {
@@ -433,6 +479,14 @@
         : '–';
       if (maxDdEl) {
         maxDdEl.textContent = fmtPct(stats.max_dd ?? NaN, 1);
+      }
+      if (sharpeBenchEl) {
+        sharpeBenchEl.textContent = (statsBench.sharpe ?? NaN).toFixed
+          ? statsBench.sharpe.toFixed(2)
+          : '–';
+      }
+      if (maxDdBenchEl) {
+        maxDdBenchEl.textContent = fmtPct(statsBench.max_dd ?? NaN, 1);
       }
     }
 

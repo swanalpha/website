@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://swanalpha.com/sitemap.xml
