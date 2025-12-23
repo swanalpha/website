@@ -279,8 +279,8 @@
   <!-- Page script -->
   <script>
     const CONFIG = {
-      dataUrl: 'regime.json',
-      swanDataUrl: 'swan.json',
+      dataUrl: 'data/regime.json',
+      swanDataUrl: 'data/swan.json',
     };
 
     const { createChart } = LightweightCharts;
@@ -519,14 +519,6 @@
         });
       }
     }
-
-    // ------------------------------------------------------------
-    // 4) SPY equity chart (overlay vs SPY B&H)
-    // ------------------------------------------------------------
-
-    // ------------------------------------------------------------
-    // 5) SWAN live stats & equity chart
-    // ------------------------------------------------------------
 
     function renderSwanStatsAndChart(swanData) {
       // Extract metrics from the new structure
