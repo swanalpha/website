@@ -46,6 +46,34 @@
       flex-direction: column;
       gap: 1rem;
     }
+    .regime-summary {
+      display: flex;
+      align-items: flex-start;
+      gap: 1.5rem;
+    }
+    .regime-summary .regime-item {
+      flex: 1 1 auto;
+    }
+    .regime-summary .live-status-card {
+      flex: 0 0 16rem;
+    }
+    .live-status-card {
+      position: relative;
+      border-color: rgba(16, 185, 129, 0.35);
+      background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(16, 185, 129, 0.12) 100%);
+      box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7), 0 0 0 1px rgba(16, 185, 129, 0.2);
+    }
+    .live-status-card::before {
+      content: '';
+      position: absolute;
+      top: 10px;
+      bottom: 10px;
+      left: -1px;
+      width: 3px;
+      border-radius: 3px;
+      background: linear-gradient(180deg, #34d399, #22d3ee);
+      opacity: 0.9;
+    }
     @media (min-width: 768px) {
       .regime-comparison {
         flex-direction: row;
@@ -110,14 +138,23 @@
             <h2 class="text-sm md:text-base font-semibold text-slate-100">
               SPY Price with <span class="text-emerald-400">Live Regime Signals</span>
             </h2>
-            <span id="spy-as-of" class="text-xs text-slate-400"></span>
           </div>
-          <div class="regime-item text-slate-400 leading-relaxed">
-            Market Regime refers to the prevailing market environment characterized by distinct patterns
-            of price behavior, volatility, and risk-return dynamics. Our algorithm identifies three regimes:
-            Bull (favorable conditions for equity exposure), Neutral (mixed signals requiring moderate positioning),
-            and Bear (defensive conditions favoring cash or low-risk assets). The colored bars below the price chart
-            show regimes predicted by our algorithm.
+          <div class="regime-summary">
+            <div class="regime-item text-slate-400 leading-relaxed">
+              Market Regime refers to the prevailing market environment characterized by distinct patterns
+              of price behavior, volatility, and risk-return dynamics. Our algorithm identifies three regimes:
+              Bull (favorable conditions for equity exposure), Neutral (mixed signals requiring moderate positioning),
+              and Bear (defensive conditions favoring cash or low-risk assets). The colored bars below the price chart
+              show regimes predicted by our algorithm.
+            </div>
+            <div class="live-status-card rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-[11px] text-slate-300">
+              <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Live status</div>
+              <div class="mt-2 space-y-1">
+                <div>Current Regime: <span id="spy-current-regime" class="font-semibold text-emerald-400">—</span></div>
+                <div>Target exposure: <span id="spy-target-exposure" class="font-semibold text-slate-100">—</span></div>
+                <div id="spy-as-of" class="text-slate-400">as of —</div>
+              </div>
+            </div>
           </div>
 
           <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3 md:p-4 space-y-3">
@@ -375,6 +412,46 @@
     // 2) SPY header (regime + live stats)
     // ------------------------------------------------------------
 
+    function updateSpyLiveStatus(regimes) {
+      const regimeEl = document.getElementById('spy-current-regime');
+      const exposureEl = document.getElementById('spy-target-exposure');
+      if (!regimeEl || !exposureEl || !Array.isArray(regimes) || !regimes.length) {
+        return;
+      }
+
+      const latest = regimes[regimes.length - 1];
+      const regimeValue = String(latest.regime || '').toUpperCase();
+      const mapping = {
+        BULL: { label: 'Bull', exposure: '100%', className: 'text-emerald-400' },
+        NEUTRAL: { label: 'Neutral', exposure: '50%', className: 'text-amber-400' },
+        BEAR: { label: 'Bear', exposure: '0%', className: 'text-rose-400' },
+      };
+      const current = mapping[regimeValue] || {
+        label: 'Unknown',
+        exposure: '—',
+        className: 'text-slate-200',
+      };
+
+      regimeEl.textContent = current.label;
+      regimeEl.classList.remove('text-emerald-400', 'text-amber-400', 'text-rose-400', 'text-slate-200');
+      regimeEl.classList.add(current.className);
+      exposureEl.textContent = current.exposure;
+
+      const asOfEl = document.getElementById('spy-as-of');
+      if (asOfEl && asOfEl.textContent.includes('—') && latest.time) {
+        const timestamp = new Date(latest.time);
+        if (!Number.isNaN(timestamp.valueOf())) {
+          const formatted = timestamp.toLocaleDateString('en-US', {
+            year: 'numeric',
+            month: 'short',
+            day: 'numeric',
+            timeZone: 'America/New_York',
+          });
+          asOfEl.textContent = `as of ${formatted} ET`;
+        }
+      }
+    }
+
     // ------------------------------------------------------------
     // 3) SPY price + regime charts
     // ------------------------------------------------------------
@@ -417,6 +494,8 @@
       }
 
       if (!candles.length) return;
+
+      updateSpyLiveStatus(regimes);
 
       const priceChart = createChart(containerPrice, {
         layout: {
