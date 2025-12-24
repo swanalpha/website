@@ -295,7 +295,7 @@
             </div>
             <div class="flex items-center justify-between gap-2">
               <div class="text-[11px] text-slate-500">
-                Portfolio details and allocation strategy not disclosed · performance is real-time
+                Portfolio starts with $1,000,000 on 2025-01-01. SWAN portfolio detail is not disclosed. Performance is real-time.
               </div>
             </div>
           </div>
@@ -611,16 +611,19 @@
       const bhMetricsEl = document.getElementById('swan-live-bh-metrics');
       const spyMetricsEl = document.getElementById('swan-live-spy-metrics');
 
-      const fmtSharpe = v => ((v ?? NaN).toFixed ? v.toFixed(2) : '–');
+      const fmtMetric = v => {
+        const num = Number(v);
+        return Number.isFinite(num) ? num.toFixed(2) : '–';
+      };
 
       if (overlayMetricsEl) {
-        overlayMetricsEl.textContent = `(CAGR: ${fmtPct(statsOverlay.cagr ?? NaN, 1)}, Sharpe: ${fmtSharpe(statsOverlay.sharpe)})`;
+        overlayMetricsEl.textContent = `(CAGR: ${fmtPct(statsOverlay.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsOverlay.sharpe)}, Beta: ${fmtMetric(statsOverlay.beta)})`;
       }
       if (bhMetricsEl) {
-        bhMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwanBh.cagr ?? NaN, 1)}, Sharpe: ${fmtSharpe(statsSwanBh.sharpe)})`;
+        bhMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwanBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwanBh.sharpe)}, Beta: ${fmtMetric(statsSwanBh.beta)})`;
       }
       if (spyMetricsEl) {
-        spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtSharpe(statsSpyBh.sharpe)})`;
+        spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSpyBh.sharpe)})`;
       }
 
       const container = document.getElementById('swan-equity-chart');
