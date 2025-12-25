@@ -832,14 +832,14 @@
           };
 
           row.innerHTML = `
-            ${isFirstRow ? `<td class="pr-3 py-2" rowspan="${strategies.length}" style="${getBaseCellStyle()}">${periodName}</td>` : ''}
-            <td class="pr-3 py-2 font-semibold ${strategy.class}" style="${getBaseCellStyle()}">${strategy.name}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('CAGR')}" style="${getCellStyle('CAGR')}">${fmtPct(stats.CAGR ?? NaN, 1)}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('MaxDD')}" style="${getCellStyle('MaxDD')}">${fmtPct(stats.MaxDD ?? NaN, 1)}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('Calmar')}" style="${getCellStyle('Calmar')}">${(stats.Calmar ?? NaN).toFixed ? stats.Calmar.toFixed(2) : '–'}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('Sharpe')}" style="${getCellStyle('Sharpe')}">${(stats.Sharpe ?? NaN).toFixed ? stats.Sharpe.toFixed(2) : '–'}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('Sortino')}" style="${getCellStyle('Sortino')}">${(stats.Sortino ?? NaN).toFixed ? stats.Sortino.toFixed(2) : '–'}</td>
-            <td class="pr-3 py-2 text-right ${getCellClass('Vol')}" style="${getCellStyle('Vol')}">${fmtPct(stats.Vol ?? NaN, 1)}</td>
+            ${isFirstRow ? `<td class="pr-3 py-1" rowspan="${strategies.length}" style="${getBaseCellStyle()}">${periodName}</td>` : ''}
+            <td class="pr-3 py-1 font-semibold ${strategy.class}" style="${getBaseCellStyle()}">${strategy.name}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('CAGR')}" style="${getCellStyle('CAGR')}">${fmtPct(stats.CAGR ?? NaN, 1)}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('MaxDD')}" style="${getCellStyle('MaxDD')}">${fmtPct(stats.MaxDD ?? NaN, 1)}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('Calmar')}" style="${getCellStyle('Calmar')}">${(stats.Calmar ?? NaN).toFixed ? stats.Calmar.toFixed(2) : '–'}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('Sharpe')}" style="${getCellStyle('Sharpe')}">${(stats.Sharpe ?? NaN).toFixed ? stats.Sharpe.toFixed(2) : '–'}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('Sortino')}" style="${getCellStyle('Sortino')}">${(stats.Sortino ?? NaN).toFixed ? stats.Sortino.toFixed(2) : '–'}</td>
+            <td class="pr-3 py-1 text-right ${getCellClass('Vol')}" style="${getCellStyle('Vol')}">${fmtPct(stats.Vol ?? NaN, 1)}</td>
           `;
 
           tbody.appendChild(row);
