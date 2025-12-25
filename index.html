@@ -118,15 +118,15 @@
             <ul class="mt-4 hero-buckets text-[13px]">
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Regime Signals</div>
-                <div class="text-slate-300/90">Data-driven regime classification to show when conditions favor taking risk and when they call for defense.</div>
+                <div class="text-slate-300/90">Data-driven regime classification that clarifies when conditions favor taking risk—and when they call for defense.</div>
               </li>
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Model Portfolios</div>
-                <div class="text-slate-300/90">Allocations tuned to each regime, designed to balance return and drawdown. <i>(Upcoming)</i></div>
+                <div class="text-slate-300/90">Systematic portfolio construction and allocation optimization with monthly rebalancing, targeting strong returns with controlled drawdowns. <i>(Coming soon)</i></div>
               </li>
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Alpha Overlays</div>
-                <div class="text-slate-300/90">Tactical models (e.g., pullback / bottom tools) aiming to enhance returns without abandoning risk discipline. <i>(Upcoming)</i></div>
+                <div class="text-slate-300/90">Tactical overlays (e.g., pullback and bottom-detection signals) designed to enhance returns without compromising risk discipline. <i>(Coming soon)</i></div>
               </li>
             </ul>
           </div>
@@ -266,15 +266,15 @@
               <div class="flex flex-wrap gap-3 text-[11px] text-slate-300">
                 <div class="flex items-center gap-2">
                   <span class="font-semibold text-emerald-300">SWAN + Regime</span>
-                  <span id="swan-live-overlay-metrics" class="text-slate-400">(CAGR: –, Sharpe: –)</span>
+                  <span id="swan-live-overlay-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="font-semibold text-orange-300">SWAN B&amp;H</span>
-                  <span id="swan-live-bh-metrics" class="text-slate-400">(CAGR: –, Sharpe: –)</span>
+                  <span id="swan-live-bh-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="font-semibold text-sky-300">SPY B&amp;H</span>
-                  <span id="swan-live-spy-metrics" class="text-slate-400">(CAGR: –, Sharpe: –)</span>
+                  <span id="swan-live-spy-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
                 </div>
               </div>
               <div id="swan-equity-chart" class="h-56"></div>
@@ -617,13 +617,13 @@
       };
 
       if (overlayMetricsEl) {
-        overlayMetricsEl.textContent = `(CAGR: ${fmtPct(statsOverlay.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsOverlay.sharpe)}, Beta: ${fmtMetric(statsOverlay.beta)})`;
+        overlayMetricsEl.textContent = `(CAGR: ${fmtPct(statsOverlay.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsOverlay.sharpe)}, MaxDD: ${fmtPct(statsOverlay.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsOverlay.beta)})`;
       }
       if (bhMetricsEl) {
-        bhMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwanBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwanBh.sharpe)}, Beta: ${fmtMetric(statsSwanBh.beta)})`;
+        bhMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwanBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwanBh.sharpe)}, MaxDD: ${fmtPct(statsSwanBh.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsSwanBh.beta)})`;
       }
       if (spyMetricsEl) {
-        spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSpyBh.sharpe)})`;
+        spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSpyBh.sharpe)}, MaxDD: ${fmtPct(statsSpyBh.max_dd ?? NaN, 1)})`;
       }
 
       const container = document.getElementById('swan-equity-chart');
