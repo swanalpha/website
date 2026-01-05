@@ -63,6 +63,56 @@
       background: linear-gradient(135deg, rgba(15, 23, 42, 0.95) 0%, rgba(15, 23, 42, 0.85) 60%, rgba(16, 185, 129, 0.12) 100%);
       box-shadow: 0 12px 30px rgba(15, 23, 42, 0.7), 0 0 0 1px rgba(16, 185, 129, 0.2);
     }
+    .donut-label {
+      font-size: 10px;
+      fill: #e2e8f0;
+      font-weight: 600;
+    }
+    .donut-label tspan {
+      font-size: 9px;
+      font-weight: 500;
+      fill: #cbd5f5;
+    }
+    .donut-center {
+      font-size: 16px;
+      font-weight: 700;
+      fill: #e2e8f0;
+      letter-spacing: 0.02em;
+    }
+    .donut-subtitle {
+      font-size: 9px;
+      fill: #94a3b8;
+      text-transform: uppercase;
+      letter-spacing: 0.24em;
+    }
+    .swan-performance-grid {
+      display: grid;
+      grid-template-columns: 2fr 1fr;
+      gap: 1rem;
+      align-items: stretch;
+    }
+    @media (max-width: 900px) {
+      .swan-performance-grid {
+        grid-template-columns: 1fr;
+      }
+    }
+    .swan-equity-panel,
+    .swan-holdings-panel {
+      min-height: 260px;
+    }
+    .swan-equity-panel {
+      display: flex;
+      flex-direction: column;
+    }
+    .swan-equity-chart {
+      flex: 1 1 auto;
+      min-height: 220px;
+    }
+    .swan-holdings-panel {
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+    }
     .live-status-card::before {
       content: '';
       position: absolute;
@@ -127,11 +177,13 @@
               </li>
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Model Portfolios</div>
-                <div class="text-slate-300/90">Systematic portfolio construction and allocation optimization with monthly rebalancing, targeting strong returns with controlled drawdowns. <i>(Coming soon)</i></div>
+                <div class="text-slate-300/90">Systematic portfolio construction and allocation optimization with monthly rebalancing, 
+                  targeting strong returns with controlled drawdowns.</div>
               </li>
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Alpha Overlays</div>
-                <div class="text-slate-300/90">Tactical overlays (e.g., pullback and bottom-detection signals) designed to enhance returns without compromising risk discipline. <i>(Coming soon)</i></div>
+                <div class="text-slate-300/90">Tactical overlays (e.g., pullback and bottom-detection signals) designed to enhance returns 
+                  without compromising risk discipline. <i>(Coming soon)</i></div>
               </li>
             </ul>
           </div>
@@ -190,10 +242,12 @@
               </h2>
             </div>
             <div class="regime-item text-slate-400 leading-relaxed">
-              Regime-Based Exposure adjusts SPY or portfolio allocation based on a quantitative view of
-              the current market regime (e.g., Bull 100%, Neutral 50%, Bear 0%), while “Buy &amp; Hold”
-              stays 100% invested at all times. This dynamic approach aims to preserve most of SPY’s
-              long-term return with much smaller drawdowns.
+              Regime-Based Exposure is a rules-based allocation framework that scales equity exposure according
+              to the prevailing market regime (e.g., Bull 100%, Neutral 50%, Bear 0%), rather than staying fully
+              invested at all times. The table compares the regime-based approach, driven by our regime signals,
+              with Buy &amp; Hold and other commonly used strategies across key risk and return metrics. In the
+              results shown, the regime-based approach generally delivers competitive returns with meaningfully
+              lower drawdowns and volatility, supporting a smoother long-term equity experience.
             </div>
             <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 space-y-4">
               <div class="grid md:grid-cols-[2fr,1fr] gap-4 items-start">
@@ -260,45 +314,39 @@
               Live SWAN Portfolio Performance
             </h2>
             <p class="text-slate-400">
-              The SWAN Portfolio is a live model portfolio that applies the SWAN Alpha regime-based allocation framework to a diversified mix of assets. 
-              Its goal is to improve the risk/return profile versus SPY buy-and-hold through disciplined, systematic allocation. The chart shows real-time 
-              performance since launch, compared with SPY and an internal SWAN buy-and-hold benchmark.
+              The SWAN Portfolio is a live model portfolio built from a curated set of high‑quality equities. Holdings are reviewed
+              and rebalanced at each month‑end based on the latest signals. Total exposure is regime‑aware: in bear regimes the
+              portfolio moves to cash, while supportive regimes allow full equity exposure. The chart shows live performance since
+              launch on 2025‑01‑01 versus SPY Buy &amp; Hold, and the holdings panel reflects the most recent SWAN portfolio components.
             </p>
 
             <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3 md:p-4 space-y-3">
               <div class="flex flex-wrap gap-3 text-[11px] text-slate-300">
                 <div class="flex items-center gap-2">
-                  <span class="font-semibold text-emerald-300">SWAN + Regime</span>
-                  <span id="swan-live-overlay-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="font-semibold text-orange-300">SWAN B&amp;H</span>
-                  <span id="swan-live-bh-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
+                  <span class="font-semibold text-emerald-300">SWAN</span>
+                  <span id="swan-live-momentum-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
                 </div>
                 <div class="flex items-center gap-2">
                   <span class="font-semibold text-sky-300">SPY B&amp;H</span>
                   <span id="swan-live-spy-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
                 </div>
               </div>
-              <div id="swan-equity-chart" class="h-56"></div>
-              <div class="mt-2 flex flex-wrap gap-3 text-[11px] text-slate-400">
-                <div class="flex items-center gap-1.5">
-                  <span class="inline-block h-2 w-4 rounded bg-emerald-400"></span>
-                  SWAN + Regime
+              <div class="swan-performance-grid">
+                <div class="swan-equity-panel">
+                  <div id="swan-equity-chart" class="swan-equity-chart"></div>
                 </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="inline-block h-2 w-4 rounded bg-orange-400"></span>
-                  SWAN Buy &amp; Hold
-                </div>
-                <div class="flex items-center gap-1.5">
-                  <span class="inline-block h-2 w-4 rounded bg-sky-400"></span>
-                  SPY Buy &amp; Hold
+                <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
+                  <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Current Holdings of SWAN Portfolio</div>
+                  <div class="mt-3 flex flex-col items-center gap-3">
+                    <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
+                    <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
+                  </div>
                 </div>
               </div>
             </div>
             <div class="flex items-center justify-between gap-2">
               <div class="text-[11px] text-slate-500">
-                Portfolio starts with $1,000,000 on 2025-01-01. SWAN portfolio detail is not disclosed. Performance is real-time.
+                Portfolio starts with $1,000,000 on 2025-01-01. Performance is real-time.
               </div>
             </div>
           </div>
@@ -359,6 +407,24 @@
     function fmtDateStr(s) {
       if (!s) return '';
       return s;
+    }
+
+    function attachChartResize(chart, container) {
+      const resize = () => {
+        const width = container.clientWidth || 0;
+        const height = container.clientHeight || 0;
+        if (width > 0 && height > 0) {
+          chart.applyOptions({ width, height });
+        }
+      };
+
+      resize();
+      if (typeof ResizeObserver !== 'undefined') {
+        const observer = new ResizeObserver(resize);
+        observer.observe(container);
+      } else {
+        window.addEventListener('resize', resize);
+      }
     }
 
     // ------------------------------------------------------------
@@ -436,7 +502,7 @@
         // Update the "as of" timestamp in the SPY section
         const asOfEl = document.getElementById('spy-as-of');
         if (asOfEl && swanData.as_of) {
-          // Parse the timestamp (already in Eastern time from swan.py)
+          // Parse the timestamp from swan.json
           const timestampStr = swanData.as_of.replace(' EST', '').replace(' EDT', '');
           const timestamp = new Date(timestampStr.replace(' ', 'T'));
 
@@ -568,6 +634,7 @@
           mode: 0,
         },
       });
+      attachChartResize(priceChart, containerPrice);
 
       // Use the same area/line style as the performance chart for consistency.
       const priceSeries = priceChart.addAreaSeries({
@@ -654,25 +721,22 @@
     function renderSwanStatsAndChart(swanData) {
       // Extract metrics from the new structure
       const metrics = swanData.metrics || {};
-      const statsOverlay = metrics.swan_overlay || {};
-      const statsSwanBh = metrics.swan_bh || {};
+      const statsSwan = metrics.swan || {};
       const statsSpyBh = metrics.spy_bh || {};
       const curve = swanData.equity_curve || [];
 
-      const overlayMetricsEl = document.getElementById('swan-live-overlay-metrics');
-      const bhMetricsEl = document.getElementById('swan-live-bh-metrics');
+      const swanMetricsEl = document.getElementById('swan-live-momentum-metrics');
       const spyMetricsEl = document.getElementById('swan-live-spy-metrics');
+      const holdingsDonut = document.getElementById('swan-holdings-donut');
+      const holdingsEmpty = document.getElementById('swan-holdings-empty');
 
       const fmtMetric = v => {
         const num = Number(v);
         return Number.isFinite(num) ? num.toFixed(2) : '–';
       };
 
-      if (overlayMetricsEl) {
-        overlayMetricsEl.textContent = `(CAGR: ${fmtPct(statsOverlay.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsOverlay.sharpe)}, MaxDD: ${fmtPct(statsOverlay.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsOverlay.beta)})`;
-      }
-      if (bhMetricsEl) {
-        bhMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwanBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwanBh.sharpe)}, MaxDD: ${fmtPct(statsSwanBh.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsSwanBh.beta)})`;
+      if (swanMetricsEl) {
+        swanMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwan.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwan.sharpe)}, MaxDD: ${fmtPct(statsSwan.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsSwan.beta)})`;
       }
       if (spyMetricsEl) {
         spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSpyBh.sharpe)}, MaxDD: ${fmtPct(statsSpyBh.max_dd ?? NaN, 1)})`;
@@ -697,22 +761,17 @@
           horzLines: { color: '#020617' },
         },
       });
+      attachChartResize(chart, container);
       chart.applyOptions({
         localization: {
           priceFormatter: v => fmtNumber(v, 0),
         },
       });
 
-      const overlaySeries = chart.addAreaSeries({
+      const swanSeries = chart.addAreaSeries({
         lineColor: '#22c55e',
         topColor: 'rgba(34, 197, 94, 0.25)',
         bottomColor: 'rgba(34, 197, 94, 0.0)',
-        priceLineVisible: false,
-      });
-      const swanBhSeries = chart.addAreaSeries({
-        lineColor: '#f97316',
-        topColor: 'rgba(249, 115, 22, 0.25)',
-        bottomColor: 'rgba(249, 115, 22, 0.0)',
         priceLineVisible: false,
       });
       const spyBhSeries = chart.addAreaSeries({
@@ -722,21 +781,146 @@
         priceLineVisible: false,
       });
 
-      const overlayData = [];
-      const swanBhData = [];
+      const swanDataPoints = [];
       const spyBhData = [];
 
       for (const row of curve) {
-        overlayData.push({ time: row.time, value: row.swan_overlay });
-        swanBhData.push({ time: row.time, value: row.swan_bh });
-        spyBhData.push({ time: row.time, value: row.spy_bh });
+        const swanValue = row.swan ?? row.swan_overlay ?? row.swan_bh;
+        if (swanValue !== undefined && swanValue !== null) {
+          swanDataPoints.push({ time: row.time, value: swanValue });
+        }
+        if (row.spy_bh !== undefined && row.spy_bh !== null) {
+          spyBhData.push({ time: row.time, value: row.spy_bh });
+        }
       }
 
-      overlaySeries.setData(overlayData);
-      swanBhSeries.setData(swanBhData);
+      swanSeries.setData(swanDataPoints);
       spyBhSeries.setData(spyBhData);
 
       chart.timeScale().fitContent();
+
+      if (holdingsDonut && holdingsEmpty) {
+        holdingsDonut.innerHTML = '';
+        const holdings = Array.isArray(swanData.holdings) ? swanData.holdings : [];
+        const totalHoldingsValue = holdings
+          .map(row => row.value)
+          .filter(val => Number.isFinite(val))
+          .reduce((sum, val) => sum + val, 0);
+        const sorted = holdings
+          .map(row => ({
+            ticker: row.ticker || '—',
+            weight: row.percentage ?? row.weight ?? 0,
+            value: row.value ?? NaN,
+          }))
+          .filter(row => Number.isFinite(row.weight) && row.weight > 0)
+          .filter(row => row.ticker.toUpperCase() !== 'CASH')
+          .sort((a, b) => b.weight - a.weight);
+
+        if (!sorted.length) {
+          holdingsEmpty.classList.remove('hidden');
+          return;
+        }
+        holdingsEmpty.classList.add('hidden');
+
+        const palette = sorted.map((_, idx) => {
+          const hue = (idx / Math.max(sorted.length - 1, 1)) * 300;
+          return `hsl(${hue.toFixed(0)} 45% 48%)`;
+        });
+
+        const total = sorted.reduce((sum, row) => sum + row.weight, 0);
+        const center = 130;
+        const outerR = 110;
+        const innerR = 70;
+
+        const polar = (r, angle) => ({
+          x: center + r * Math.cos(angle),
+          y: center + r * Math.sin(angle),
+        });
+
+        const arcPath = (startAngle, endAngle) => {
+          const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
+          const startOuter = polar(outerR, startAngle);
+          const endOuter = polar(outerR, endAngle);
+          const startInner = polar(innerR, endAngle);
+          const endInner = polar(innerR, startAngle);
+          return [
+            `M ${startOuter.x} ${startOuter.y}`,
+            `A ${outerR} ${outerR} 0 ${largeArc} 1 ${endOuter.x} ${endOuter.y}`,
+            `L ${startInner.x} ${startInner.y}`,
+            `A ${innerR} ${innerR} 0 ${largeArc} 0 ${endInner.x} ${endInner.y}`,
+            'Z',
+          ].join(' ');
+        };
+
+        let angle = -Math.PI / 2;
+        sorted.forEach((row, idx) => {
+          const slice = (row.weight / total) * Math.PI * 2;
+          const startAngle = angle;
+          const endAngle = angle + slice;
+          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
+          path.setAttribute('d', arcPath(startAngle, endAngle));
+          path.setAttribute('fill', palette[idx % palette.length]);
+          holdingsDonut.appendChild(path);
+
+          const mid = (startAngle + endAngle) / 2;
+          const labelPos = polar((innerR + outerR) / 2, mid);
+          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+          text.setAttribute('x', labelPos.x);
+          text.setAttribute('y', labelPos.y);
+          text.setAttribute('text-anchor', 'middle');
+          text.setAttribute('dominant-baseline', 'middle');
+          text.setAttribute('class', 'donut-label');
+          const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+          t1.textContent = row.ticker;
+          t1.setAttribute('x', labelPos.x);
+          t1.setAttribute('dy', '-0.1em');
+          const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+          t2.textContent = fmtPct(row.weight, 1);
+          t2.setAttribute('x', labelPos.x);
+          t2.setAttribute('dy', '1.2em');
+          text.appendChild(t1);
+          text.appendChild(t2);
+          holdingsDonut.appendChild(text);
+          angle = endAngle;
+        });
+
+        const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
+        centerCircle.setAttribute('cx', center);
+        centerCircle.setAttribute('cy', center);
+        centerCircle.setAttribute('r', innerR - 2);
+        centerCircle.setAttribute('fill', '#020617');
+        centerCircle.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
+        holdingsDonut.appendChild(centerCircle);
+
+        const totalFromHoldings = totalHoldingsValue > 0 ? totalHoldingsValue : NaN;
+        const lastEquity = curve.length ? (curve[curve.length - 1].swan ?? NaN) : NaN;
+        const totalValue = Number.isFinite(totalFromHoldings) ? totalFromHoldings : lastEquity;
+
+        const asOfRaw = swanData.as_of || '';
+        const asOf = asOfRaw ? asOfRaw.split('T')[0].split(' ')[0] : (curve.length ? curve[curve.length - 1].time : '');
+
+        const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
+        centerText.setAttribute('x', center);
+        centerText.setAttribute('y', center - 4);
+        centerText.setAttribute('text-anchor', 'middle');
+        centerText.setAttribute('class', 'donut-center');
+        const centerValue = Number.isFinite(totalValue)
+          ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
+          : '—';
+        const tValue = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        tValue.textContent = centerValue;
+        tValue.setAttribute('x', center);
+        tValue.setAttribute('dy', '0');
+        centerText.appendChild(tValue);
+
+        const tAsOf = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
+        tAsOf.textContent = asOf ? `as of ${asOf}` : 'as of —';
+        tAsOf.setAttribute('x', center);
+        tAsOf.setAttribute('dy', '1.6em');
+        tAsOf.setAttribute('class', 'donut-subtitle');
+        centerText.appendChild(tAsOf);
+        holdingsDonut.appendChild(centerText);
+      }
     }
 
     // ------------------------------------------------------------
