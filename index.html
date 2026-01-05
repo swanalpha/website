@@ -50,6 +50,7 @@
       display: flex;
       align-items: flex-start;
       gap: 1.5rem;
+      flex-wrap: wrap;
     }
     .regime-summary .regime-item {
       flex: 1 1 auto;
@@ -131,6 +132,14 @@
       }
       .regime-comparison > .regime-item {
         flex: 1 1 50%;
+      }
+      .regime-summary {
+        flex-wrap: nowrap;
+      }
+    }
+    @media (max-width: 640px) {
+      .regime-summary .live-status-card {
+        flex: 1 1 100%;
       }
     }
   </style>
