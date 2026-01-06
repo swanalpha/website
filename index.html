@@ -254,8 +254,8 @@
               Regime-Based Exposure is a rules-based allocation framework that scales equity exposure according
               to the prevailing market regime (e.g., Bull 100%, Neutral 50%, Bear 0%), rather than staying fully
               invested at all times. The table compares the regime-based approach, driven by our regime signals,
-              with Buy &amp; Hold and other commonly used strategies across key risk and return metrics. In the
-              results shown, the regime-based approach generally delivers competitive returns with meaningfully
+              with Buy &amp; Hold and the commonly used MA200 crossover strategy across key risk and return metrics. In the
+              results shown, the regime-based approach delivers competitive returns with meaningfully
               lower drawdowns and volatility, supporting a smoother long-term equity experience.
             </div>
             <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 space-y-4">
@@ -511,8 +511,10 @@
         // Update the "as of" timestamp in the SPY section
         const asOfEl = document.getElementById('spy-as-of');
         if (asOfEl && swanData.as_of) {
-          // swan.json timestamps are UTC ISO strings.
-          const timestamp = new Date(swanData.as_of);
+          // swan.json timestamps are UTC ISO strings (may omit the trailing "Z").
+          const raw = String(swanData.as_of);
+          const hasTz = /[zZ]|[+-]\d{2}:?\d{2}$/.test(raw);
+          const timestamp = new Date(hasTz ? raw : `${raw}Z`);
           if (!Number.isNaN(timestamp.valueOf())) {
             const formatted = timestamp.toLocaleString('en-US', {
               year: 'numeric',
@@ -950,7 +952,6 @@
         { key: 'Regime', name: 'Regime-Based Exposure', class: 'text-blue-300' },
         { key: 'Buy&Hold', name: 'Buy & Hold', class: 'text-slate-200' },
         { key: 'MA200', name: 'MA200 Crossover', class: 'text-slate-200' },
-        { key: 'Vol Targeting', name: 'Vol Targeting', class: 'text-slate-200' }
       ];
 
       // Define metrics and whether higher is better
