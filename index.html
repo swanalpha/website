@@ -511,21 +511,21 @@
         // Update the "as of" timestamp in the SPY section
         const asOfEl = document.getElementById('spy-as-of');
         if (asOfEl && swanData.as_of) {
-          // Parse the timestamp from swan.json
-          const timestampStr = swanData.as_of.replace(' EST', '').replace(' EDT', '');
-          const timestamp = new Date(timestampStr.replace(' ', 'T'));
-
-          // Format for display in Eastern time
-          const formatted = timestamp.toLocaleString('en-US', {
-            year: 'numeric',
-            month: 'short',
-            day: 'numeric',
-            hour: '2-digit',
-            minute: '2-digit',
-            hour12: true,
-            timeZone: 'America/New_York'
-          });
-          asOfEl.textContent = `as of ${formatted} ET`;
+          // swan.json timestamps are UTC ISO strings.
+          const timestamp = new Date(swanData.as_of);
+          if (!Number.isNaN(timestamp.valueOf())) {
+            const formatted = timestamp.toLocaleString('en-US', {
+              year: 'numeric',
+              month: 'short',
+              day: 'numeric',
+              hour: '2-digit',
+              minute: '2-digit',
+              hour12: true,
+              timeZone: 'America/New_York',
+              timeZoneName: 'short',
+            });
+            asOfEl.textContent = `as of ${formatted}`;
+          }
         }
       }
 
