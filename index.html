@@ -346,9 +346,10 @@
                 </div>
                 <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
                   <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Current Holdings of SWAN Portfolio</div>
-                  <div class="mt-3 flex flex-col items-center gap-3">
+                  <div class="mt-3 flex flex-col items-center gap-2">
                     <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
                     <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
+                    <div id="swan-holdings-other" class="text-[11px] text-slate-400 text-center"></div>
                   </div>
                 </div>
               </div>
@@ -740,6 +741,7 @@
       const spyMetricsEl = document.getElementById('swan-live-spy-metrics');
       const holdingsDonut = document.getElementById('swan-holdings-donut');
       const holdingsEmpty = document.getElementById('swan-holdings-empty');
+      const holdingsOther = document.getElementById('swan-holdings-other');
 
       const fmtMetric = v => {
         const num = Number(v);
@@ -810,8 +812,9 @@
 
       chart.timeScale().fitContent();
 
-      if (holdingsDonut && holdingsEmpty) {
+      if (holdingsDonut && holdingsEmpty && holdingsOther) {
         holdingsDonut.innerHTML = '';
+        holdingsOther.textContent = '';
         const holdings = Array.isArray(swanData.holdings) ? swanData.holdings : [];
         const totalHoldingsValue = holdings
           .map(row => row.value)
@@ -824,7 +827,6 @@
             value: row.value ?? NaN,
           }))
           .filter(row => Number.isFinite(row.weight) && row.weight > 0)
-          .filter(row => row.ticker.toUpperCase() !== 'CASH')
           .sort((a, b) => b.weight - a.weight);
 
         if (!sorted.length) {
@@ -833,12 +835,41 @@
         }
         holdingsEmpty.classList.add('hidden');
 
-        const palette = sorted.map((_, idx) => {
-          const hue = (idx / Math.max(sorted.length - 1, 1)) * 300;
+        const totalWeight = sorted.reduce((sum, row) => sum + row.weight, 0);
+        const minSlice = 0.04;
+        const large = [];
+        const small = [];
+        for (const row of sorted) {
+          const sliceWeight = totalWeight > 0 ? row.weight / totalWeight : 0;
+          if (sliceWeight < minSlice) {
+            small.push(row);
+          } else {
+            large.push(row);
+          }
+        }
+        let otherTickers = [];
+        if (small.length) {
+          const otherWeight = small.reduce((sum, row) => sum + row.weight, 0);
+          const otherValue = small
+            .map(row => row.value)
+            .filter(val => Number.isFinite(val))
+            .reduce((sum, val) => sum + val, 0);
+          otherTickers = small.map(row => row.ticker);
+          large.push({ ticker: 'Other', weight: otherWeight, value: otherValue });
+        }
+
+        const chartRows = large;
+        const colorCount = chartRows.filter(row => row.ticker !== 'Other').length;
+        let colorIdx = 0;
+        const palette = chartRows.map(row => {
+          if (row.ticker === 'Other') {
+            return '#64748b';
+          }
+          const hue = (colorIdx / Math.max(colorCount - 1, 1)) * 300;
+          colorIdx += 1;
           return `hsl(${hue.toFixed(0)} 45% 48%)`;
         });
-
-        const total = sorted.reduce((sum, row) => sum + row.weight, 0);
+        const total = chartRows.reduce((sum, row) => sum + row.weight, 0);
         const center = 130;
         const outerR = 110;
         const innerR = 70;
@@ -864,7 +895,7 @@
         };
 
         let angle = -Math.PI / 2;
-        sorted.forEach((row, idx) => {
+        chartRows.forEach((row, idx) => {
           const slice = (row.weight / total) * Math.PI * 2;
           const startAngle = angle;
           const endAngle = angle + slice;
@@ -886,7 +917,7 @@
           t1.setAttribute('x', labelPos.x);
           t1.setAttribute('dy', '-0.1em');
           const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-          t2.textContent = fmtPct(row.weight, 1);
+          t2.textContent = fmtPct(total > 0 ? row.weight / total : NaN, 1);
           t2.setAttribute('x', labelPos.x);
           t2.setAttribute('dy', '1.2em');
           text.appendChild(t1);
@@ -894,6 +925,12 @@
           holdingsDonut.appendChild(text);
           angle = endAngle;
         });
+
+        if (otherTickers.length) {
+          const otherParts = small.slice(0, 10).map(row => `${row.ticker} (${fmtPct(row.weight / totalWeight, 1)})`);
+          const suffix = small.length > 10 ? ` +${small.length - 10} more` : '';
+          holdingsOther.textContent = `Other: ${otherParts.join(', ')}${suffix}`;
+        }
 
         const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
         centerCircle.setAttribute('cx', center);
