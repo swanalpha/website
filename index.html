@@ -749,7 +749,7 @@
       };
 
       if (swanMetricsEl) {
-        swanMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwan.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwan.sharpe)}, MaxDD: ${fmtPct(statsSwan.max_dd ?? NaN, 1)}, Beta: ${fmtMetric(statsSwan.beta)})`;
+        swanMetricsEl.textContent = `(CAGR: ${fmtPct(statsSwan.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSwan.sharpe)}, MaxDD: ${fmtPct(statsSwan.max_dd ?? NaN, 1)}, Vol: ${fmtPct(statsSwan.ann_vol ?? NaN, 1)})`;
       }
       if (spyMetricsEl) {
         spyMetricsEl.textContent = `(CAGR: ${fmtPct(statsSpyBh.cagr ?? NaN, 1)}, Sharpe: ${fmtMetric(statsSpyBh.sharpe)}, MaxDD: ${fmtPct(statsSpyBh.max_dd ?? NaN, 1)})`;
