@@ -202,7 +202,7 @@
         <section class="space-y-3">
           <div class="flex items-center justify-between gap-2">
             <h2 class="text-sm md:text-base font-semibold text-slate-100">
-              SPY Price with <span class="text-emerald-400">Live Regime Signals</span>
+              Live Regime Signals
             </h2>
           </div>
           <div class="regime-summary">
@@ -210,8 +210,8 @@
               Market Regime refers to the prevailing market environment characterized by distinct patterns
               of price behavior, volatility, and risk-return dynamics. Our algorithm identifies three regimes:
               Bull (favorable conditions for equity exposure), Neutral (mixed signals requiring moderate positioning),
-              and Bear (defensive conditions favoring cash or low-risk assets). The colored bars below the price chart
-              show regimes predicted by our algorithm.
+              and Bear (defensive conditions favoring cash or low-risk assets). The colored bars below the 
+              <span class="text-emerald-400">SPY</span> price chart show regimes predicted by our algorithm.
             </div>
             <div class="live-status-card rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-[11px] text-slate-300">
               <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Live status</div>
@@ -345,7 +345,9 @@
                   <div id="swan-equity-chart" class="swan-equity-chart"></div>
                 </div>
                 <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
-                  <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Current Holdings of SWAN Portfolio</div>
+                  <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-500">
+                    SWAN Portfolio Rebalanced on —
+                  </div>
                   <div class="mt-3 flex flex-col items-center gap-2">
                     <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
                     <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
@@ -417,6 +419,35 @@
     function fmtDateStr(s) {
       if (!s) return '';
       return s;
+    }
+
+    function parseUtcDate(raw) {
+      if (!raw) return null;
+      const str = String(raw).trim();
+      const tzMatch = str.match(/([zZ]|[+-]\d{2}:?\d{2})$/);
+      const tz = tzMatch ? tzMatch[1] : '';
+      let core = tz ? str.slice(0, -tz.length) : str;
+      if (core.includes('.')) {
+        const parts = core.split('.');
+        const base = parts[0];
+        const frac = (parts[1] || '').replace(/\D.*$/, '');
+        const ms = frac.length > 3 ? frac.slice(0, 3) : frac;
+        core = ms.length ? `${base}.${ms}` : base;
+      }
+      const normalized = core + (tz || 'Z');
+      const date = new Date(normalized);
+      return Number.isNaN(date.valueOf()) ? null : date;
+    }
+
+    function lastFridayPrevMonth(date) {
+      if (!(date instanceof Date) || Number.isNaN(date.valueOf())) return '—';
+      const year = date.getUTCFullYear();
+      const month = date.getUTCMonth();
+      const prevMonthEnd = new Date(Date.UTC(year, month, 0));
+      const dow = prevMonthEnd.getUTCDay();
+      const offset = (dow - 5 + 7) % 7;
+      prevMonthEnd.setUTCDate(prevMonthEnd.getUTCDate() - offset);
+      return prevMonthEnd.toISOString().slice(0, 10);
     }
 
     function attachChartResize(chart, container) {
@@ -513,10 +544,8 @@
         const asOfEl = document.getElementById('spy-as-of');
         if (asOfEl && swanData.as_of) {
           // swan.json timestamps are UTC ISO strings (may omit the trailing "Z").
-          const raw = String(swanData.as_of);
-          const hasTz = /[zZ]|[+-]\d{2}:?\d{2}$/.test(raw);
-          const timestamp = new Date(hasTz ? raw : `${raw}Z`);
-          if (!Number.isNaN(timestamp.valueOf())) {
+          const timestamp = parseUtcDate(swanData.as_of);
+          if (timestamp) {
             const formatted = timestamp.toLocaleString('en-US', {
               year: 'numeric',
               month: 'short',
@@ -742,6 +771,7 @@
       const holdingsDonut = document.getElementById('swan-holdings-donut');
       const holdingsEmpty = document.getElementById('swan-holdings-empty');
       const holdingsOther = document.getElementById('swan-holdings-other');
+      const holdingsTitle = document.getElementById('swan-holdings-title');
 
       const fmtMetric = v => {
         const num = Number(v);
@@ -944,8 +974,12 @@
         const lastEquity = curve.length ? (curve[curve.length - 1].swan ?? NaN) : NaN;
         const totalValue = Number.isFinite(totalFromHoldings) ? totalFromHoldings : lastEquity;
 
-        const asOfRaw = swanData.as_of || '';
-        const asOf = asOfRaw ? asOfRaw.split('T')[0].split(' ')[0] : (curve.length ? curve[curve.length - 1].time : '');
+        const asOfRaw = swanData.as_of || (curve.length ? curve[curve.length - 1].time : '');
+        const asOfDate = parseUtcDate(asOfRaw);
+        const asOf = asOfDate ? asOfDate.toISOString().slice(0, 10) : '—';
+        if (holdingsTitle) {
+          holdingsTitle.textContent = `SWAN Portfolio Rebalanced on ${lastFridayPrevMonth(asOfDate)}`;
+        }
 
         const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
         centerText.setAttribute('x', center);
