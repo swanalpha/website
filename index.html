@@ -258,7 +258,7 @@
               The SWAN Portfolio is a live model portfolio built from a curated set of high‑quality equities. Holdings are selected
               and rebalanced by our algorithms at each month‑end. Total exposure is regime‑aware: 
               in bear / neutral regimes the portfolio moves to cash, while supportive regimes allow full equity exposure. The chart 
-              shows live performance since launch on 2025‑01‑01 versus SPY Buy &amp; Hold, and the Top Holdings panel reflects 
+              shows live performance since launch on January 1, 2025 versus SPY Buy &amp; Hold, and the Holdings panel reflects 
               the current SWAN portfolio components.
             </p>
 
@@ -280,7 +280,7 @@
                 <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
                   <div class="space-y-1">
                     <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-300">
-                      Top Holdings of SWAN Portfolio
+                      Holdings of SWAN Portfolio
                     </div>
                     <div id="swan-holdings-subtitle" class="text-[10px] text-slate-500">
                       Rebalanced on —
@@ -924,7 +924,7 @@
           return bKey - aKey;
         });
 
-        const topRows = rows.slice(0, 10);
+        const topRows = rows.slice(0, 13);
         topRows.forEach(row => {
           const tr = document.createElement('tr');
           const isCash = String(row.ticker || '').toUpperCase() === 'CASH';
@@ -932,7 +932,7 @@
           const valueLabel = Number.isFinite(row.value) ? `$${fmtNumber(row.value, 0)}` : '–';
           const weightLabel = Number.isFinite(row.weight) ? fmtPct(row.weight, 1) : '–';
           tr.innerHTML = `
-            <td class="py-1 pr-3 font-semibold text-slate-200">${row.ticker}</td>
+            <td class="py-1">${row.ticker}</td>
             <td class="py-1 pr-3 text-right">${sharesLabel}</td>
             <td class="py-1 pr-3 text-right">${valueLabel}</td>
             <td class="py-1 text-right">${weightLabel}</td>
@@ -945,13 +945,13 @@
         const totalValueLabel = Number.isFinite(totalValue) ? `$${fmtNumber(totalValue, 0)}` : '–';
         holdingsTotal.innerHTML = `
           <tr class="border-t border-slate-700 bg-slate-900/70 text-slate-100">
-            <td class="py-2 pr-3 font-semibold" colspan="2">Total as of ${asOfLabel}</td>
+            <td class="py-1" colspan="2">Total as of ${asOfLabel}</td>
             <td class="py-2 pr-3 text-right font-semibold text-emerald-300">${totalValueLabel}</td>
             <td class="py-2 text-right"></td>
           </tr>
         `;
         if (holdingsTitle) {
-          holdingsTitle.textContent = 'Top Holdings of SWAN Portfolio';
+          holdingsTitle.textContent = 'Holdings of SWAN Portfolio';
         }
         if (holdingsSubtitle) {
           const rebalanceRaw = swanData.last_rebalance?.rebalance_date;
