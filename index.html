@@ -243,6 +243,74 @@
           </div>
         </section>
 
+        <section class="space-y-6 pt-2">
+        <!-- SWAN live comparison -->
+          <div class="space-y-3">
+            <h2 class="text-sm md:text-base font-semibold text-slate-100">
+              Live SWAN Portfolio Performance
+            </h2>
+            <p class="text-slate-400">
+              The SWAN Portfolio is a live model portfolio built from a curated set of high‑quality equities. Holdings are selected
+              and rebalanced by our algorithms at each month‑end based on the latest signals. Total exposure is regime‑aware: 
+              in bear / neutral regimes the portfolio moves to cash, while supportive regimes allow full equity exposure. The chart 
+              shows live performance since launch on 2025‑01‑01 versus SPY Buy &amp; Hold, and the holdings panel reflects the most
+              recent SWAN portfolio components.
+            </p>
+
+            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3 md:p-4 space-y-3">
+              <div class="flex flex-wrap gap-3 text-[11px] text-slate-300">
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-emerald-300">SWAN</span>
+                  <span id="swan-live-momentum-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
+                </div>
+                <div class="flex items-center gap-2">
+                  <span class="font-semibold text-sky-300">SPY B&amp;H</span>
+                  <span id="swan-live-spy-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
+                </div>
+              </div>
+              <div class="swan-performance-grid">
+                <div class="swan-equity-panel">
+                  <div id="swan-equity-chart" class="swan-equity-chart"></div>
+                </div>
+                <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
+                  <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-500">
+                    SWAN Portfolio Rebalanced on —
+                  </div>
+                  <div class="mt-3 flex flex-col items-center gap-2">
+                    <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
+                    <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
+                    <div id="swan-holdings-other" class="text-[11px] text-slate-400 text-center"></div>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <div class="bg-slate-800/30 rounded-lg p-4 space-y-3">
+              <p class="font-semibold text-slate-200 text-sm">Disclaimers</p>
+              <ul class="text-[11px] text-slate-400 space-y-1 leading-relaxed">
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 mt-0.5">•</span>
+                  <span>Portfolio starts with $1,000,000 on 2025-01-01.
+                    Rebalance is conducted on the last trading day of each month using close prices.
+                    Transaction costs, taxes, or slippage are NOT included.
+                  </span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 mt-0.5">•</span>
+                  <span>The information and results presented are for research and educational purposes only and do not constitute investment advice or an offer to buy or sell any security or investment product.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 mt-0.5">•</span>
+                  <span>Past performance does not guarantee future results. Live signals may underperform SPY and may result in losses over any time horizon.</span>
+                </li>
+                <li class="flex items-start gap-2">
+                  <span class="text-slate-500 mt-0.5">•</span>
+                  <span>Backtests are walk-forward and out-of-sample, assume open-to-close execution, and do not include transaction costs, taxes, or slippage.</span>
+                </li>
+              </ul>
+            </div>
+          </div>
+        </section>
+
         <!-- Live performance section -->
           <div class="space-y-3">
             <div class="flex items-center justify-between gap-2">
@@ -258,7 +326,7 @@
               results shown, the regime-based approach delivers competitive returns with meaningfully
               lower drawdowns and volatility, supporting a smoother long-term equity experience.
             </div>
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-4 space-y-4">
+            <div class="bg-slate-900/60 p-4 space-y-4">
               <div class="grid md:grid-cols-[2fr,1fr] gap-4 items-start">
                 <div>
                   <div class="overflow-x-auto max-w-6xl">
@@ -293,72 +361,15 @@
                     </table>
                   </div>
                 </div>
-
                 <div class="bg-slate-800/30 rounded-lg p-4 space-y-3">
-                  <p class="font-semibold text-slate-200 text-sm">Disclaimers</p>
                   <ul class="text-[11px] text-slate-400 space-y-2 leading-relaxed">
-                    <li class="flex items-start gap-2">
-                      <span class="text-slate-500 mt-0.5">•</span>
-                      <span>The information and results presented are for research and educational purposes only and do not constitute investment advice or an offer to buy or sell any security or investment product.</span>
-                    </li>
-                    <li class="flex items-start gap-2">
-                      <span class="text-slate-500 mt-0.5">•</span>
-                      <span>Past performance does not guarantee future results. Live signals may underperform SPY and may result in losses over any time horizon.</span>
-                    </li>
                     <li class="flex items-start gap-2">
                       <span class="text-slate-500 mt-0.5">•</span>
                       <span>Backtests are walk-forward and out-of-sample, assume open-to-close execution, and do not include transaction costs, taxes, or slippage.</span>
                     </li>
                   </ul>
                 </div>
-              </div>
-            </div>
-          </div>
-        </section>
 
-        <section class="space-y-6 pt-2">
-        <!-- SWAN live comparison -->
-          <div class="space-y-3">
-            <h2 class="text-sm md:text-base font-semibold text-slate-100">
-              Live SWAN Portfolio Performance
-            </h2>
-            <p class="text-slate-400">
-              The SWAN Portfolio is a live model portfolio built from a curated set of high‑quality equities. Holdings are reviewed
-              and rebalanced at each month‑end based on the latest signals. Total exposure is regime‑aware: in bear regimes the
-              portfolio moves to cash, while supportive regimes allow full equity exposure. The chart shows live performance since
-              launch on 2025‑01‑01 versus SPY Buy &amp; Hold, and the holdings panel reflects the most recent SWAN portfolio components.
-            </p>
-
-            <div class="bg-slate-900/60 border border-slate-800 rounded-2xl p-3 md:p-4 space-y-3">
-              <div class="flex flex-wrap gap-3 text-[11px] text-slate-300">
-                <div class="flex items-center gap-2">
-                  <span class="font-semibold text-emerald-300">SWAN</span>
-                  <span id="swan-live-momentum-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
-                </div>
-                <div class="flex items-center gap-2">
-                  <span class="font-semibold text-sky-300">SPY B&amp;H</span>
-                  <span id="swan-live-spy-metrics" class="text-slate-400">(CAGR: –, Sharpe: –, MaxDD: –)</span>
-                </div>
-              </div>
-              <div class="swan-performance-grid">
-                <div class="swan-equity-panel">
-                  <div id="swan-equity-chart" class="swan-equity-chart"></div>
-                </div>
-                <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
-                  <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                    SWAN Portfolio Rebalanced on —
-                  </div>
-                  <div class="mt-3 flex flex-col items-center gap-2">
-                    <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
-                    <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
-                    <div id="swan-holdings-other" class="text-[11px] text-slate-400 text-center"></div>
-                  </div>
-                </div>
-              </div>
-            </div>
-            <div class="flex items-center justify-between gap-2">
-              <div class="text-[11px] text-slate-500">
-                Portfolio starts with $1,000,000 on 2025-01-01. Performance is real-time.
               </div>
             </div>
           </div>
