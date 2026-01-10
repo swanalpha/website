@@ -273,13 +273,34 @@
                   <div id="swan-equity-chart" class="swan-equity-chart"></div>
                 </div>
                 <div class="swan-holdings-panel rounded-xl bg-slate-950/60 p-4">
-                  <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-500">
-                    SWAN Portfolio Rebalanced on —
+                  <div class="space-y-1">
+                    <div id="swan-holdings-title" class="text-[10px] uppercase tracking-[0.2em] text-slate-300">
+                      Top Holdings of SWAN Portfolio
+                    </div>
+                    <div id="swan-holdings-subtitle" class="text-[10px] text-slate-500">
+                      Rebalanced on —
+                    </div>
                   </div>
-                  <div class="mt-3 flex flex-col items-center gap-2">
-                    <svg id="swan-holdings-donut" viewBox="0 0 260 260" class="w-full max-w-[320px]" role="img" aria-label="Portfolio holdings donut chart"></svg>
+                  <div class="mt-3">
+                    <div class="mt-2 overflow-x-auto">
+                      <table class="w-full text-[11px] text-left text-slate-300">
+                        <thead class="text-[10px] uppercase tracking-[0.18em] text-slate-500">
+                          <tr>
+                            <th class="py-1 pr-3">Ticker</th>
+                            <th class="py-1 pr-3 text-right">Shares</th>
+                            <th class="py-1 pr-3 text-right">Value</th>
+                            <th class="py-1 text-right">Weight</th>
+                          </tr>
+                        </thead>
+                        <tbody id="swan-holdings-table">
+                          <!-- Rows injected by JS -->
+                        </tbody>
+                        <tfoot id="swan-holdings-total">
+                          <!-- Total injected by JS -->
+                        </tfoot>
+                      </table>
+                    </div>
                     <div id="swan-holdings-empty" class="hidden text-[12px] text-slate-500">No holdings available.</div>
-                    <div id="swan-holdings-other" class="text-[11px] text-slate-400 text-center"></div>
                   </div>
                 </div>
               </div>
@@ -783,10 +804,11 @@
 
       const swanMetricsEl = document.getElementById('swan-live-momentum-metrics');
       const spyMetricsEl = document.getElementById('swan-live-spy-metrics');
-      const holdingsDonut = document.getElementById('swan-holdings-donut');
+      const holdingsTable = document.getElementById('swan-holdings-table');
+      const holdingsTotal = document.getElementById('swan-holdings-total');
       const holdingsEmpty = document.getElementById('swan-holdings-empty');
-      const holdingsOther = document.getElementById('swan-holdings-other');
       const holdingsTitle = document.getElementById('swan-holdings-title');
+      const holdingsSubtitle = document.getElementById('swan-holdings-subtitle');
 
       const fmtMetric = v => {
         const num = Number(v);
@@ -857,175 +879,83 @@
 
       chart.timeScale().fitContent();
 
-      if (holdingsDonut && holdingsEmpty && holdingsOther) {
-        holdingsDonut.innerHTML = '';
-        holdingsOther.textContent = '';
-        holdingsOther.classList.add('hidden');
+      if (holdingsTable && holdingsEmpty && holdingsTotal) {
+        holdingsTable.innerHTML = '';
+        holdingsTotal.innerHTML = '';
         const holdings = Array.isArray(swanData.holdings) ? swanData.holdings : [];
-        const totalHoldingsValue = holdings
+        const normalized = holdings.map(row => ({
+          ticker: row.ticker || '—',
+          shares: Number(row.shares),
+          value: Number(row.value),
+          percentage: Number(row.percentage ?? row.weight),
+        }));
+        const totalValue = normalized
           .map(row => row.value)
           .filter(val => Number.isFinite(val))
           .reduce((sum, val) => sum + val, 0);
-        const sorted = holdings
-          .map(row => ({
-            ticker: row.ticker || '—',
-            weight: row.percentage ?? row.weight ?? 0,
-            value: row.value ?? NaN,
-          }))
-          .filter(row => Number.isFinite(row.weight) && row.weight > 0)
-          .sort((a, b) => b.weight - a.weight);
+        const rows = normalized
+          .map(row => {
+            const weight = Number.isFinite(row.percentage)
+              ? row.percentage
+              : (Number.isFinite(row.value) && totalValue > 0 ? row.value / totalValue : NaN);
+            return {
+              ticker: row.ticker,
+              shares: row.shares,
+              value: row.value,
+              weight,
+            };
+          })
+          .filter(row => row.ticker && (Number.isFinite(row.weight) || Number.isFinite(row.value) || Number.isFinite(row.shares)));
 
-        if (!sorted.length) {
+        if (!rows.length) {
           holdingsEmpty.classList.remove('hidden');
           return;
         }
         holdingsEmpty.classList.add('hidden');
 
-        const totalWeight = sorted.reduce((sum, row) => sum + row.weight, 0);
-        const minSlice = 0.04;
-        const large = [];
-        const small = [];
-        for (const row of sorted) {
-          const sliceWeight = totalWeight > 0 ? row.weight / totalWeight : 0;
-          if (sliceWeight < minSlice) {
-            small.push(row);
-          } else {
-            large.push(row);
-          }
-        }
-        let otherTickers = [];
-        const cashOnlyOther =
-          small.length === 1 && String(small[0].ticker || '').toUpperCase() === 'CASH';
-        if (small.length && !cashOnlyOther) {
-          const otherWeight = small.reduce((sum, row) => sum + row.weight, 0);
-          const otherValue = small
-            .map(row => row.value)
-            .filter(val => Number.isFinite(val))
-            .reduce((sum, val) => sum + val, 0);
-          otherTickers = small.map(row => row.ticker);
-          large.push({ ticker: 'Other', weight: otherWeight, value: otherValue });
-        }
-
-        const chartRows = large;
-        const colorCount = chartRows.filter(row => row.ticker !== 'Other').length;
-        let colorIdx = 0;
-        const palette = chartRows.map(row => {
-          if (row.ticker === 'Other') {
-            return '#64748b';
-          }
-          const hue = (colorIdx / Math.max(colorCount - 1, 1)) * 300;
-          colorIdx += 1;
-          return `hsl(${hue.toFixed(0)} 45% 48%)`;
-        });
-        const total = chartRows.reduce((sum, row) => sum + row.weight, 0);
-        const center = 130;
-        const outerR = 110;
-        const innerR = 70;
-
-        const polar = (r, angle) => ({
-          x: center + r * Math.cos(angle),
-          y: center + r * Math.sin(angle),
+        rows.sort((a, b) => {
+          const aKey = Number.isFinite(a.weight) ? a.weight : -1;
+          const bKey = Number.isFinite(b.weight) ? b.weight : -1;
+          return bKey - aKey;
         });
 
-        const arcPath = (startAngle, endAngle) => {
-          const largeArc = endAngle - startAngle > Math.PI ? 1 : 0;
-          const startOuter = polar(outerR, startAngle);
-          const endOuter = polar(outerR, endAngle);
-          const startInner = polar(innerR, endAngle);
-          const endInner = polar(innerR, startAngle);
-          return [
-            `M ${startOuter.x} ${startOuter.y}`,
-            `A ${outerR} ${outerR} 0 ${largeArc} 1 ${endOuter.x} ${endOuter.y}`,
-            `L ${startInner.x} ${startInner.y}`,
-            `A ${innerR} ${innerR} 0 ${largeArc} 0 ${endInner.x} ${endInner.y}`,
-            'Z',
-          ].join(' ');
-        };
-
-        let angle = -Math.PI / 2;
-        chartRows.forEach((row, idx) => {
-          const slice = (row.weight / total) * Math.PI * 2;
-          const startAngle = angle;
-          const endAngle = angle + slice;
-          const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-          path.setAttribute('d', arcPath(startAngle, endAngle));
-          path.setAttribute('fill', palette[idx % palette.length]);
-          holdingsDonut.appendChild(path);
-
-          const mid = (startAngle + endAngle) / 2;
-          const labelPos = polar((innerR + outerR) / 2, mid);
-          const text = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-          text.setAttribute('x', labelPos.x);
-          text.setAttribute('y', labelPos.y);
-          text.setAttribute('text-anchor', 'middle');
-          text.setAttribute('dominant-baseline', 'middle');
-          text.setAttribute('class', 'donut-label');
-          const t1 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-          t1.textContent = row.ticker;
-          t1.setAttribute('x', labelPos.x);
-          t1.setAttribute('dy', '-0.1em');
-          const t2 = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-          t2.textContent = fmtPct(total > 0 ? row.weight / total : NaN, 1);
-          t2.setAttribute('x', labelPos.x);
-          t2.setAttribute('dy', '1.2em');
-          text.appendChild(t1);
-          text.appendChild(t2);
-          holdingsDonut.appendChild(text);
-          angle = endAngle;
+        const topRows = rows.slice(0, 10);
+        topRows.forEach(row => {
+          const tr = document.createElement('tr');
+          const isCash = String(row.ticker || '').toUpperCase() === 'CASH';
+          const sharesLabel = isCash ? '' : (Number.isFinite(row.shares) ? fmtNumber(row.shares, 2) : '–');
+          const valueLabel = Number.isFinite(row.value) ? `$${fmtNumber(row.value, 0)}` : '–';
+          const weightLabel = Number.isFinite(row.weight) ? fmtPct(row.weight, 1) : '–';
+          tr.innerHTML = `
+            <td class="py-1 pr-3 font-semibold text-slate-200">${row.ticker}</td>
+            <td class="py-1 pr-3 text-right">${sharesLabel}</td>
+            <td class="py-1 pr-3 text-right">${valueLabel}</td>
+            <td class="py-1 text-right">${weightLabel}</td>
+          `;
+          holdingsTable.appendChild(tr);
         });
-
-        if (otherTickers.length) {
-          const otherParts = small.slice(0, 10).map(row => `${row.ticker} (${fmtPct(row.weight / totalWeight, 1)})`);
-          const suffix = small.length > 10 ? ` +${small.length - 10} more` : '';
-          holdingsOther.textContent = `Other: ${otherParts.join(', ')}${suffix}`;
-          holdingsOther.classList.remove('hidden');
-        }
-
-        const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
-        centerCircle.setAttribute('cx', center);
-        centerCircle.setAttribute('cy', center);
-        centerCircle.setAttribute('r', innerR - 2);
-        centerCircle.setAttribute('fill', '#020617');
-        centerCircle.setAttribute('stroke', 'rgba(148, 163, 184, 0.2)');
-        holdingsDonut.appendChild(centerCircle);
-
-        const totalFromHoldings = totalHoldingsValue > 0 ? totalHoldingsValue : NaN;
-        const lastEquity = curve.length ? (curve[curve.length - 1].swan ?? NaN) : NaN;
-        const totalValue = Number.isFinite(totalFromHoldings) ? totalFromHoldings : lastEquity;
-
         const asOfRaw = swanData.as_of || (curve.length ? curve[curve.length - 1].time : '');
         const asOfDate = parseUtcDate(asOfRaw);
-        const asOf = asOfDate ? asOfDate.toISOString().slice(0, 10) : '—';
+        const asOfLabel = asOfDate ? asOfDate.toISOString().slice(0, 10) : '—';
+        const totalValueLabel = Number.isFinite(totalValue) ? `$${fmtNumber(totalValue, 0)}` : '–';
+        holdingsTotal.innerHTML = `
+          <tr class="border-t border-slate-700 bg-slate-900/70 text-slate-100">
+            <td class="py-2 pr-3 font-semibold" colspan="2">Total as of ${asOfLabel}</td>
+            <td class="py-2 pr-3 text-right font-semibold text-emerald-300">${totalValueLabel}</td>
+            <td class="py-2 text-right"></td>
+          </tr>
+        `;
         if (holdingsTitle) {
+          holdingsTitle.textContent = 'Top Holdings of SWAN Portfolio';
+        }
+        if (holdingsSubtitle) {
           const rebalanceRaw = swanData.last_rebalance?.rebalance_date;
           const rebalanceDate = parseUtcDate(rebalanceRaw);
           const rebalanceLabel = rebalanceDate
             ? rebalanceDate.toISOString().slice(0, 10)
             : lastFridayPrevMonth(asOfDate);
-          holdingsTitle.textContent = `SWAN Portfolio Rebalanced on ${rebalanceLabel}`;
+          holdingsSubtitle.textContent = `Last rebalanced on ${rebalanceLabel}`;
         }
-
-        const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
-        centerText.setAttribute('x', center);
-        centerText.setAttribute('y', center - 4);
-        centerText.setAttribute('text-anchor', 'middle');
-        centerText.setAttribute('class', 'donut-center');
-        const centerValue = Number.isFinite(totalValue)
-          ? `$${Number(totalValue).toLocaleString(undefined, { maximumFractionDigits: 0 })}`
-          : '—';
-        const tValue = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-        tValue.textContent = centerValue;
-        tValue.setAttribute('x', center);
-        tValue.setAttribute('dy', '0');
-        centerText.appendChild(tValue);
-
-        const tAsOf = document.createElementNS('http://www.w3.org/2000/svg', 'tspan');
-        tAsOf.textContent = asOf ? `as of ${asOf}` : 'as of —';
-        tAsOf.setAttribute('x', center);
-        tAsOf.setAttribute('dy', '1.6em');
-        tAsOf.setAttribute('class', 'donut-subtitle');
-        centerText.appendChild(tAsOf);
-        holdingsDonut.appendChild(centerText);
       }
     }
 
