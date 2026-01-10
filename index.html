@@ -845,6 +845,7 @@
       if (holdingsDonut && holdingsEmpty && holdingsOther) {
         holdingsDonut.innerHTML = '';
         holdingsOther.textContent = '';
+        holdingsOther.classList.add('hidden');
         const holdings = Array.isArray(swanData.holdings) ? swanData.holdings : [];
         const totalHoldingsValue = holdings
           .map(row => row.value)
@@ -878,7 +879,9 @@
           }
         }
         let otherTickers = [];
-        if (small.length) {
+        const cashOnlyOther =
+          small.length === 1 && String(small[0].ticker || '').toUpperCase() === 'CASH';
+        if (small.length && !cashOnlyOther) {
           const otherWeight = small.reduce((sum, row) => sum + row.weight, 0);
           const otherValue = small
             .map(row => row.value)
@@ -960,6 +963,7 @@
           const otherParts = small.slice(0, 10).map(row => `${row.ticker} (${fmtPct(row.weight / totalWeight, 1)})`);
           const suffix = small.length > 10 ? ` +${small.length - 10} more` : '';
           holdingsOther.textContent = `Other: ${otherParts.join(', ')}${suffix}`;
+          holdingsOther.classList.remove('hidden');
         }
 
         const centerCircle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
