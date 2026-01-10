@@ -982,7 +982,12 @@
         const asOfDate = parseUtcDate(asOfRaw);
         const asOf = asOfDate ? asOfDate.toISOString().slice(0, 10) : '—';
         if (holdingsTitle) {
-          holdingsTitle.textContent = `SWAN Portfolio Rebalanced on ${lastFridayPrevMonth(asOfDate)}`;
+          const rebalanceRaw = swanData.last_rebalance?.rebalance_date;
+          const rebalanceDate = parseUtcDate(rebalanceRaw);
+          const rebalanceLabel = rebalanceDate
+            ? rebalanceDate.toISOString().slice(0, 10)
+            : lastFridayPrevMonth(asOfDate);
+          holdingsTitle.textContent = `SWAN Portfolio Rebalanced on ${rebalanceLabel}`;
         }
 
         const centerText = document.createElementNS('http://www.w3.org/2000/svg', 'text');
