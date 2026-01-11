@@ -301,7 +301,7 @@
                       <table class="w-full text-[11px] text-left text-slate-300">
                         <thead class="text-[10px] uppercase tracking-[0.18em] text-slate-500">
                           <tr>
-                            <th class="py-1 pr-3">Ticker</th>
+                            <th class="py-1">Ticker</th>
                             <th class="py-1 pr-3 text-right">Shares</th>
                             <th class="py-1 pr-3 text-right">Value</th>
                             <th class="py-1 text-right">Weight</th>
@@ -942,7 +942,11 @@
           const valueLabel = Number.isFinite(row.value) ? `$${fmtNumber(row.value, 0)}` : '–';
           const weightLabel = Number.isFinite(row.weight) ? fmtPct(row.weight, 1) : '–';
           tr.innerHTML = `
-            <td class="py-1">${row.ticker}</td>
+            <td class="py-1">
+              <span class="rounded-md px-2.5 text-[10px] font-semibold uppercase tracking-[0.18em] text-emerald-100" style="display: inline-block; width: 3.5rem; text-align: center; background-color: rgba(16, 185, 129, 0.35);">
+                ${row.ticker}
+              </span>
+            </td>
             <td class="py-1 pr-3 text-right">${sharesLabel}</td>
             <td class="py-1 pr-3 text-right">${valueLabel}</td>
             <td class="py-1 text-right">${weightLabel}</td>
