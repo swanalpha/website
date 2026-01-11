@@ -33,15 +33,14 @@
   <script src="assets/lightweight-charts.production.min.js"></script>
 
   <style>
-    html {
-      overflow-x: hidden;
-    }
     body {
       font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', sans-serif;
-      overflow-x: hidden;
     }
     .table-scroll {
-      max-width: 100%;
+      width: 100%;
+      max-width: calc(100vw - 2rem);
+      display: block;
+      box-sizing: border-box;
       overflow-x: auto;
       -webkit-overflow-scrolling: touch;
       overscroll-behavior-x: contain;
