@@ -478,6 +478,7 @@
       const tzMatch = str.match(/([zZ]|[+-]\d{2}:?\d{2})$/);
       const tz = tzMatch ? tzMatch[1] : '';
       let core = tz ? str.slice(0, -tz.length) : str;
+      const isDateOnly = /^\d{4}-\d{2}-\d{2}$/.test(core);
       if (core.includes('.')) {
         const parts = core.split('.');
         const base = parts[0];
@@ -485,7 +486,9 @@
         const ms = frac.length > 3 ? frac.slice(0, 3) : frac;
         core = ms.length ? `${base}.${ms}` : base;
       }
-      const normalized = core + (tz || 'Z');
+      const normalized = isDateOnly
+        ? `${core}T00:00:00${tz || 'Z'}`
+        : core + (tz || 'Z');
       const date = new Date(normalized);
       return Number.isNaN(date.valueOf()) ? null : date;
     }
