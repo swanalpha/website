@@ -235,7 +235,7 @@
               <div class="mt-2 space-y-1">
                 <div>Current Regime: <span id="spy-current-regime" class="font-semibold text-emerald-400">—</span></div>
                 <div>Target exposure: <span id="spy-target-exposure" class="font-semibold text-slate-100">—</span></div>
-                <div>Correction Risk: <span id="spy-signal" class="font-semibold text-slate-200">Low</span></div>
+                <div id="spy-correction-risk">Correction Risk: <span id="spy-signal" class="font-semibold text-slate-200">Low</span></div>
                 <div id="spy-hedge-hint" class="text-[10px] text-slate-500"></div>
               </div>
             </div>
@@ -674,14 +674,18 @@
     function updateSpySignal(signals, regimes) {
       const signalEl = document.getElementById('spy-signal');
       const hedgeEl = document.getElementById('spy-hedge-hint');
+      const riskEl = document.getElementById('spy-correction-risk');
       if (!signalEl) return;
 
       let label = 'Low';
       let className = 'text-slate-200';
       let latestRow = null;
       let lastDate = '';
+      let isBull = true;
       if (Array.isArray(regimes) && regimes.length) {
         lastDate = regimes[regimes.length - 1].time || '';
+        const lastRegime = String(regimes[regimes.length - 1].regime || '').toUpperCase();
+        isBull = lastRegime === 'BULL';
       }
 
       if (signals && Array.isArray(signals.history)) {
@@ -716,6 +720,12 @@
         } else {
           hedgeEl.textContent = '';
         }
+      }
+      if (riskEl) {
+        riskEl.style.display = isBull ? '' : 'none';
+      }
+      if (!isBull && hedgeEl) {
+        hedgeEl.textContent = '';
       }
     }
 
@@ -788,7 +798,7 @@
           if (watch || action) {
             signalStrip.push({
               time: date,
-              value: 1,
+              value: 1.1,
               color: action ? '#ef4444cc' : '#f59e0bcc',
             });
           }
@@ -815,6 +825,7 @@
         }
       }
 
+      containerPrice.style.position = 'relative';
       const priceChart = createChart(containerPrice, {
         layout: {
           background: { color: '#020617' },
@@ -884,19 +895,107 @@
       });
       regimeSeries.setData(stripData);
 
+      let signalSeries = null;
       if (signalStrip.length) {
-        const signalSeries = priceChart.addHistogramSeries({
+        signalSeries = priceChart.addHistogramSeries({
           priceFormat: { type: 'price', precision: 0, minMove: 1 },
-          priceScaleId: 'signal',
+          priceScaleId: 'regime',
+          base: 1,
           priceLineVisible: false,
           lastValueVisible: false,
         });
-        priceChart.priceScale('signal').applyOptions({
-          scaleMargins: { top: 0, bottom: 0.99 },
-          borderVisible: false,
-        });
         signalSeries.setData(signalStrip);
       }
+
+      const regimeByDate = new Map(regimes.map(row => [row.time, row.regime]));
+      const signalByDate = new Map();
+      if (signals && Array.isArray(signals.history)) {
+        signals.history.forEach(row => {
+          const date = row.date || row.time;
+          if (!date) return;
+          signalByDate.set(date, {
+            watch: Boolean(row.watch_signal),
+            action: Boolean(row.action_signal),
+          });
+        });
+      }
+
+      const tooltip = document.createElement('div');
+      tooltip.style.position = 'absolute';
+      tooltip.style.top = '0';
+      tooltip.style.left = '0';
+      tooltip.style.padding = '6px 8px';
+      tooltip.style.background = 'rgba(2, 6, 23, 0.9)';
+      tooltip.style.border = '1px solid rgba(148, 163, 184, 0.2)';
+      tooltip.style.borderRadius = '6px';
+      tooltip.style.color = '#e2e8f0';
+      tooltip.style.fontSize = '11px';
+      tooltip.style.pointerEvents = 'none';
+      tooltip.style.whiteSpace = 'nowrap';
+      tooltip.style.zIndex = '10';
+      tooltip.style.display = 'none';
+      containerPrice.appendChild(tooltip);
+
+      const toDateKey = value => {
+        if (!value) return '';
+        if (typeof value === 'string') return value;
+        if (typeof value === 'number') {
+          return new Date(value * 1000).toISOString().slice(0, 10);
+        }
+        if (typeof value === 'object' && 'year' in value) {
+          const m = String(value.month).padStart(2, '0');
+          const d = String(value.day).padStart(2, '0');
+          return `${value.year}-${m}-${d}`;
+        }
+        return '';
+      };
+
+      priceChart.subscribeCrosshairMove(param => {
+        if (!param || !param.point || !param.time) {
+          tooltip.style.display = 'none';
+          return;
+        }
+        const time = param.time || priceChart.timeScale().coordinateToTime(param.point.x);
+        if (!time) {
+          tooltip.style.display = 'none';
+          return;
+        }
+        const dateKey = toDateKey(time);
+        if (!regimeByDate.has(dateKey)) {
+          tooltip.style.display = 'none';
+          return;
+        }
+        const bandThreshold = containerPrice.clientHeight * 0.82;
+        if (param.point.y < bandThreshold) {
+          tooltip.style.display = 'none';
+          return;
+        }
+        const regimeLabel = regimeByDate.get(dateKey) || 'Unknown';
+        const signal = signalByDate.get(dateKey);
+        let riskLabel = '';
+        if (signal?.action) {
+          riskLabel = 'ALERT';
+        } else if (signal?.watch) {
+          riskLabel = 'WATCH';
+        }
+
+        tooltip.innerHTML = `
+          <div><span class="text-slate-400">Regime:</span> ${regimeLabel}</div>
+          ${riskLabel ? `<div><span class="text-slate-400">Correction Risk:</span> ${riskLabel}</div>` : ''}
+        `;
+        tooltip.style.display = 'block';
+
+        const left = Math.min(
+          Math.max(0, param.point.x - 12),
+          containerPrice.clientWidth - tooltip.offsetWidth - 12
+        );
+        const top = Math.min(
+          Math.max(0, param.point.y - 12 - tooltip.offsetHeight),
+          containerPrice.clientHeight - tooltip.offsetHeight - 12
+        );
+        tooltip.style.left = `${left}px`;
+        tooltip.style.top = `${top}px`;
+      });
 
       // Trade markers (if any) - legacy format
       const trades = data.trades || [];
