@@ -200,14 +200,13 @@
                 <div class="text-slate-300/90">Data-driven regime classification that clarifies when conditions favor taking risk—and when they call for defense.</div>
               </li>
               <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
+                <div class="text-emerald-400 font-semibold mb-1 text-lg">Overlay Signals</div>
+                <div class="text-slate-300/90">Tactical signals for both risk (regime shifts, correction alerts) and opportunity (pullbacks, bottoms), designed to improve outcomes without sacrificing risk discipline.</div>
+              </li>
+              <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
                 <div class="text-emerald-400 font-semibold mb-1 text-lg">Model Portfolios</div>
                 <div class="text-slate-300/90">Systematic portfolio construction and allocation optimization with monthly rebalancing, 
                   targeting strong returns with controlled drawdowns.</div>
-              </li>
-              <li class="h-full rounded-lg border border-slate-800 bg-slate-900/60 p-3 shadow-sm shadow-emerald-500/10">
-                <div class="text-emerald-400 font-semibold mb-1 text-lg">Alpha Overlays</div>
-                <div class="text-slate-300/90">Tactical overlays (e.g., pullback and bottom-detection signals) designed to enhance returns 
-                  without compromising risk discipline. <i>(Coming soon)</i></div>
               </li>
             </ul>
           </div>
@@ -217,18 +216,18 @@
         <section class="space-y-3">
           <div class="flex items-center justify-between gap-2">
             <h2 class="text-sm md:text-base font-semibold text-slate-100">
-              Live Regime Signals
+              Live Regime and Risk Signals
             </h2>
           </div>
           <div class="regime-summary">
             <div class="regime-item text-slate-400 leading-relaxed">
-              Market Regime refers to the prevailing market environment, defined by price action, volatility,
-              and risk-return dynamics. Our algorithm classifies each day as Bull (favorable for equity exposure),
-              Neutral (mixed signals), or Bear (defensive posture with higher cash). The colored bars below the
-              <span class="text-sky-300">SPY</span> price chart show the regime history. Our algorithm also
-              publishes correction-risk alerts before bull regimes flip: <span class="text-amber-400">WATCH</span>
-              indicates elevated risk, while <span class="text-rose-400">ALERT</span> flags a higher-risk state 
-              that may warrant more defensive positioning or hedging.
+              Market regime describes the prevailing market environment, reflected in price action, volatility, 
+              and risk–return dynamics. Our model classifies each trading day as Bull, Neutral, or Bear (more defensive),
+              shown by the colored bars beneath the SPY chart. Our model also publish early pullback risk 
+              signals that combine information from equities, yield curve, liquidity, options, and credit 
+              stress. <span class="text-amber-400">WATCH</span> signals elevated risk; 
+              <span class="text-rose-400">ALERT</span> signals a higher-risk state that may warrant tighter risk controls, 
+              defensive positioning, or hedging.
             </div>
             <div class="live-status-card rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-[11px] text-slate-300">
               <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Live status</div>
