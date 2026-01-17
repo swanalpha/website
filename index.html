@@ -766,6 +766,7 @@
       updateSpySignal(signals, regimes);
 
       const signalMarkers = [];
+      const signalStrip = [];
       if (signals && Array.isArray(signals.history)) {
         const sortedSignals = [...signals.history].sort((a, b) => {
           const aDate = String(a.date || a.time || '');
@@ -784,6 +785,13 @@
           }
           const watch = Boolean(row.watch_signal);
           const action = Boolean(row.action_signal);
+          if (watch || action) {
+            signalStrip.push({
+              time: date,
+              value: 1,
+              color: action ? '#ef4444cc' : '#f59e0bcc',
+            });
+          }
           if (watch && !prevWatch) {
             signalMarkers.push({
               time: date,
@@ -875,6 +883,20 @@
         };
       });
       regimeSeries.setData(stripData);
+
+      if (signalStrip.length) {
+        const signalSeries = priceChart.addHistogramSeries({
+          priceFormat: { type: 'price', precision: 0, minMove: 1 },
+          priceScaleId: 'signal',
+          priceLineVisible: false,
+          lastValueVisible: false,
+        });
+        priceChart.priceScale('signal').applyOptions({
+          scaleMargins: { top: 0, bottom: 0.99 },
+          borderVisible: false,
+        });
+        signalSeries.setData(signalStrip);
+      }
 
       // Trade markers (if any) - legacy format
       const trades = data.trades || [];
