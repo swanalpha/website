@@ -222,18 +222,22 @@
           </div>
           <div class="regime-summary">
             <div class="regime-item text-slate-400 leading-relaxed">
-              Market Regime refers to the prevailing market environment characterized by distinct patterns
-              of price behavior, volatility, and risk-return dynamics. Our algorithm identifies three regimes:
-              Bull (favorable conditions for equity exposure), Neutral (mixed signals requiring moderate positioning),
-              and Bear (defensive conditions favoring cash or low-risk assets). The colored bars below the 
-              <span class="text-emerald-400">SPY</span> price chart show regimes predicted by our algorithm.
+              Market Regime refers to the prevailing market environment, defined by price action, volatility,
+              and risk-return dynamics. Our algorithm classifies each day as Bull (favorable for equity exposure),
+              Neutral (mixed signals), or Bear (defensive posture with higher cash). The colored bars below the
+              <span class="text-sky-300">SPY</span> price chart show the regime history. Our algorithm also
+              publishes correction-risk alerts before bull regimes flip: <span class="text-amber-400">WATCH</span>
+              indicates elevated risk, while <span class="text-rose-400">ALERT</span> flags a higher-risk state 
+              that may warrant more defensive positioning or hedging.
             </div>
             <div class="live-status-card rounded-xl border border-slate-800 bg-slate-900/70 px-4 py-3 text-[11px] text-slate-300">
               <div class="text-[10px] uppercase tracking-[0.2em] text-slate-500">Live status</div>
+              <div id="spy-as-of" class="text-slate-500">as of —</div>
               <div class="mt-2 space-y-1">
                 <div>Current Regime: <span id="spy-current-regime" class="font-semibold text-emerald-400">—</span></div>
                 <div>Target exposure: <span id="spy-target-exposure" class="font-semibold text-slate-100">—</span></div>
-                <div id="spy-as-of" class="text-slate-400">as of —</div>
+                <div>Correction Risk: <span id="spy-signal" class="font-semibold text-slate-200">Low</span></div>
+                <div id="spy-hedge-hint" class="text-[10px] text-slate-500"></div>
               </div>
             </div>
           </div>
@@ -445,6 +449,7 @@
     const CONFIG = {
       dataUrl: 'data/regime.json',
       swanDataUrl: 'data/swan.json',
+      signalsUrl: 'data/signals.json',
     };
 
     const { createChart } = LightweightCharts;
@@ -574,12 +579,14 @@
 
       let mainData = null;
       let swanData = null;
+      let signalsData = null;
 
       try {
         // Load main data.json and swan.json
-        [mainData, swanData] = await Promise.all([
+        [mainData, swanData, signalsData] = await Promise.all([
           loadJson(CONFIG.dataUrl).catch(() => null),
           loadJson(CONFIG.swanDataUrl).catch(() => null),
+          loadJson(CONFIG.signalsUrl).catch(() => null),
         ]);
       } catch (err) {
         console.error('Error loading data:', err);
@@ -587,7 +594,7 @@
 
       // Use mainData for SPY charts
       if (mainData) {
-        renderSpyPriceAndRegimeCharts(mainData);
+        renderSpyPriceAndRegimeCharts(mainData, signalsData);
       }
 
       // Use swanData for SWAN performance
@@ -665,11 +672,59 @@
       }
     }
 
+    function updateSpySignal(signals, regimes) {
+      const signalEl = document.getElementById('spy-signal');
+      const hedgeEl = document.getElementById('spy-hedge-hint');
+      if (!signalEl) return;
+
+      let label = 'Low';
+      let className = 'text-slate-200';
+      let latestRow = null;
+      let lastDate = '';
+      if (Array.isArray(regimes) && regimes.length) {
+        lastDate = regimes[regimes.length - 1].time || '';
+      }
+
+      if (signals && Array.isArray(signals.history)) {
+        for (const row of signals.history) {
+          const date = row.date || row.time;
+          if (!date) continue;
+          if (lastDate && date > lastDate) continue;
+          if (!latestRow || date > (latestRow.date || latestRow.time || '')) {
+            latestRow = row;
+          }
+        }
+      }
+
+      if (latestRow) {
+        if (latestRow.action_signal) {
+          label = 'ALERT';
+          className = 'text-rose-400';
+        } else if (latestRow.watch_signal) {
+          label = 'WATCH';
+          className = 'text-amber-400';
+        }
+      }
+
+      signalEl.textContent = label;
+      signalEl.classList.remove('text-amber-400', 'text-rose-400', 'text-slate-200');
+      signalEl.classList.add(className);
+      if (hedgeEl) {
+        if (label === 'ALERT') {
+          hedgeEl.textContent = 'Correction risk is significant. Consider hedging your positions.';
+        } else if (label === 'WATCH') {
+          hedgeEl.textContent = 'Correction risk is elevated. Monitor conditions closely.';
+        } else {
+          hedgeEl.textContent = '';
+        }
+      }
+    }
+
     // ------------------------------------------------------------
     // 3) SPY price + regime charts
     // ------------------------------------------------------------
 
-    function renderSpyPriceAndRegimeCharts(data) {
+    function renderSpyPriceAndRegimeCharts(data, signals) {
       const containerPrice = document.getElementById('spy-price-chart');
       if (!containerPrice) return;
 
@@ -709,6 +764,49 @@
       if (!candles.length) return;
 
       updateSpyLiveStatus(regimes);
+      updateSpySignal(signals, regimes);
+
+      const signalMarkers = [];
+      if (signals && Array.isArray(signals.history)) {
+        const sortedSignals = [...signals.history].sort((a, b) => {
+          const aDate = String(a.date || a.time || '');
+          const bDate = String(b.date || b.time || '');
+          return aDate.localeCompare(bDate);
+        });
+        const candleDates = new Set(candles.map(c => c.time));
+        let prevWatch = false;
+        let prevAction = false;
+        for (const row of sortedSignals) {
+          const date = row.date || row.time;
+          if (!date || !candleDates.has(date)) {
+            prevWatch = Boolean(row.watch_signal);
+            prevAction = Boolean(row.action_signal);
+            continue;
+          }
+          const watch = Boolean(row.watch_signal);
+          const action = Boolean(row.action_signal);
+          if (watch && !prevWatch) {
+            signalMarkers.push({
+              time: date,
+              position: 'aboveBar',
+              color: '#f59e0b',
+              shape: 'circle',
+              text: 'WATCH',
+            });
+          }
+          if (action && !prevAction) {
+            signalMarkers.push({
+              time: date,
+              position: 'aboveBar',
+              color: '#ef4444',
+              shape: 'square',
+              text: 'ALERT',
+            });
+          }
+          prevWatch = watch;
+          prevAction = action;
+        }
+      }
 
       const priceChart = createChart(containerPrice, {
         layout: {
@@ -793,8 +891,9 @@
       });
 
 
-      if (markers.length > 0) {
-        priceSeries.setMarkers(markers);
+      const allMarkers = markers.concat(signalMarkers);
+      if (allMarkers.length > 0) {
+        priceSeries.setMarkers(allMarkers);
       }
 
       // Initial view: past 12 months (if available)
