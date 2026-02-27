@@ -42420,7 +42420,6 @@
       "action_reason": null,
       "alarm": [
         "credit",
-        "equity_internals",
         "liquidity",
         "options",
         "rates",
@@ -42927,6 +42926,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "options",
         "rates",
         "usd"
@@ -59294,7 +59294,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "risk_appetite"
       ]
     },
@@ -59668,6 +59667,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "financial_stress",
         "rates"
       ]
@@ -61270,7 +61270,6 @@
       "action_reason": null,
       "alarm": [
         "credit",
-        "equity_internals",
         "options",
         "risk_appetite"
       ]
@@ -61673,6 +61672,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "financial_stress",
         "liquidity",
         "options"
@@ -98018,10 +98018,22 @@
         "options",
         "usd"
       ]
+    },
+    {
+      "date": "2026-02-27",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "options",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-02-26",
+    "date": "2026-02-27",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -98046,8 +98058,8 @@
       "minor_lead": 21.4,
       "minor_n_events": 13,
       "fa_all": 43,
-      "fa_all_py": 1.9395024163236083,
-      "days": 5587
+      "fa_all_py": 1.9391553328561204,
+      "days": 5588
     },
     "action": {
       "major_cov": 1.0,
@@ -98057,8 +98069,8 @@
       "minor_lead": 16.6,
       "minor_n_events": 13,
       "fa_all": 27,
-      "fa_all_py": 1.2178270986218005,
-      "days": 5587
+      "fa_all_py": 1.2176091624910523,
+      "days": 5588
     }
   },
   "event_coverage": {
