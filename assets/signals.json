@@ -55476,7 +55476,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "liquidity"
       ]
     },
@@ -55886,6 +55885,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "options",
         "risk_appetite"
@@ -55899,7 +55899,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "liquidity",
         "options",
         "risk_appetite"
@@ -56313,6 +56312,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "options"
       ]
@@ -60359,11 +60359,12 @@
     {
       "date": "2013-09-17",
       "regime": "bull",
-      "watch_signal": false,
+      "watch_signal": true,
       "action_signal": false,
-      "watch_reason": null,
+      "watch_reason": "rates,equity_internals",
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "financial_stress",
         "options",
         "rates"
@@ -60374,7 +60375,7 @@
       "regime": "bull",
       "watch_signal": true,
       "action_signal": false,
-      "watch_reason": "rates,equity_internals",
+      "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "equity_internals",
@@ -60497,7 +60498,7 @@
     {
       "date": "2013-10-01",
       "regime": "bull",
-      "watch_signal": true,
+      "watch_signal": false,
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
@@ -60754,7 +60755,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "risk_appetite"
       ]
     },
@@ -60766,6 +60766,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "risk_appetite"
       ]
     },
@@ -61142,8 +61143,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
-        "equity_internals"
+        "credit"
       ]
     },
     {
@@ -98902,10 +98902,21 @@
       "alarm": [
         "credit"
       ]
+    },
+    {
+      "date": "2026-03-12",
+      "regime": "neutral",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "credit"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-03-11",
+    "date": "2026-03-12",
     "regime": "neutral",
     "watch_signal": false,
     "action_signal": false,
