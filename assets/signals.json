@@ -52406,6 +52406,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "liquidity",
         "options",
@@ -52702,7 +52703,6 @@
       "watch_reason": null,
       "action_reason": "liquidity",
       "alarm": [
-        "credit",
         "equity_internals",
         "liquidity",
         "rates",
@@ -52717,6 +52717,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "liquidity",
         "rates",
@@ -53012,7 +53013,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "liquidity",
         "rates"
@@ -90540,11 +90540,12 @@
     {
       "date": "2023-07-28",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
-      "watch_reason": "rates,equity_internals",
-      "action_reason": null,
+      "watch_signal": false,
+      "action_signal": true,
+      "watch_reason": null,
+      "action_reason": "credit",
       "alarm": [
+        "credit",
         "equity_internals",
         "liquidity",
         "options",
@@ -90555,8 +90556,8 @@
     {
       "date": "2023-07-31",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90571,8 +90572,8 @@
     {
       "date": "2023-08-01",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90587,8 +90588,8 @@
     {
       "date": "2023-08-02",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90606,7 +90607,7 @@
       "watch_signal": false,
       "action_signal": true,
       "watch_reason": null,
-      "action_reason": "financial_stress",
+      "action_reason": null,
       "alarm": [
         "credit",
         "equity_internals",
@@ -90871,7 +90872,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "liquidity",
         "rates",
@@ -90882,7 +90882,7 @@
       "date": "2023-08-28",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90896,7 +90896,7 @@
       "date": "2023-08-29",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90910,7 +90910,7 @@
       "date": "2023-08-30",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -90924,7 +90924,7 @@
       "date": "2023-08-31",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -98637,10 +98637,21 @@
       "alarm": [
         "credit"
       ]
+    },
+    {
+      "date": "2026-03-20",
+      "regime": "neutral",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "credit"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-03-19",
+    "date": "2026-03-20",
     "regime": "neutral",
     "watch_signal": false,
     "action_signal": false,
@@ -98672,7 +98683,7 @@
       "major_lead": 12.5,
       "major_n_events": 8,
       "minor_cov": 0.3076923076923077,
-      "minor_lead": 18.25,
+      "minor_lead": 19.25,
       "minor_n_events": 13,
       "fa_all": 32,
       "fa_all_py": 1.4415445119771182,
@@ -99001,7 +99012,7 @@
         "event_name": null,
         "onset_date": "2023-09-01",
         "covered": true,
-        "lead_td": 21.0
+        "lead_td": 25.0
       },
       {
         "event_id": "minor:2024-07-16:22",
