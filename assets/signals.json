@@ -83296,10 +83296,11 @@
       "date": "2020-08-03",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
-      "action_reason": null,
+      "action_reason": "liquidity",
       "alarm": [
+        "equity_internals",
         "financial_stress",
         "liquidity",
         "options",
@@ -83312,7 +83313,7 @@
       "watch_signal": false,
       "action_signal": true,
       "watch_reason": null,
-      "action_reason": "liquidity",
+      "action_reason": null,
       "alarm": [
         "equity_internals",
         "financial_stress",
@@ -83613,7 +83614,7 @@
       "date": "2020-09-01",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -83748,7 +83749,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "financial_stress",
         "liquidity",
         "options",
@@ -92286,6 +92286,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "options",
         "risk_appetite"
@@ -92734,7 +92735,6 @@
       "action_reason": null,
       "alarm": [
         "credit",
-        "equity_internals",
         "liquidity",
         "options",
         "rates",
@@ -92750,6 +92750,7 @@
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "options",
         "rates",
@@ -93237,7 +93238,6 @@
       "action_reason": null,
       "alarm": [
         "credit",
-        "equity_internals",
         "financial_stress",
         "liquidity",
         "rates",
@@ -101491,7 +101491,7 @@
       "major_lead": 15.75,
       "major_n_events": 8,
       "minor_cov": 0.42857142857142855,
-      "minor_lead": 22.666666666666668,
+      "minor_lead": 22.833333333333332,
       "minor_n_events": 14,
       "fa_all": 68,
       "fa_all_py": 3.0632820879513765,
@@ -101502,7 +101502,7 @@
       "major_lead": 14.625,
       "major_n_events": 8,
       "minor_cov": 0.42857142857142855,
-      "minor_lead": 17.5,
+      "minor_lead": 17.666666666666668,
       "minor_n_events": 14,
       "fa_all": 38,
       "fa_all_py": 1.7118341079728279,
@@ -101645,7 +101645,7 @@
         "event_name": null,
         "onset_date": "2020-09-02",
         "covered": true,
-        "lead_td": 21.0
+        "lead_td": 22.0
       },
       {
         "event_id": "major:2022-01-03:20",
@@ -101823,7 +101823,7 @@
         "event_name": null,
         "onset_date": "2020-09-02",
         "covered": true,
-        "lead_td": 21.0
+        "lead_td": 22.0
       },
       {
         "event_id": "major:2022-01-03:20",
