@@ -94897,13 +94897,12 @@
     {
       "date": "2024-08-06",
       "regime": "bull",
-      "watch_signal": true,
+      "watch_signal": false,
       "action_signal": false,
-      "watch_reason": "rates,equity_internals",
+      "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
-        "equity_internals",
         "rates"
       ]
     },
@@ -94912,7 +94911,7 @@
       "regime": "bull",
       "watch_signal": true,
       "action_signal": false,
-      "watch_reason": null,
+      "watch_reason": "rates,equity_internals",
       "action_reason": null,
       "alarm": [
         "credit",
@@ -95034,7 +95033,7 @@
     {
       "date": "2024-08-20",
       "regime": "bull",
-      "watch_signal": false,
+      "watch_signal": true,
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
@@ -95290,6 +95289,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "options"
       ]
     },
@@ -95301,7 +95301,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
         "options"
       ]
     },
@@ -95680,6 +95679,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "options",
         "rates",
         "risk_appetite"
@@ -100660,10 +100660,24 @@
         "risk_appetite",
         "usd"
       ]
+    },
+    {
+      "date": "2026-06-25",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "financial_stress",
+        "liquidity",
+        "risk_appetite",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-06-24",
+    "date": "2026-06-25",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -100690,8 +100704,8 @@
       "minor_lead": 16.833333333333332,
       "minor_n_events": 14,
       "fa_all": 57,
-      "fa_all_py": 2.546357028895586,
-      "days": 5641
+      "fa_all_py": 2.5459057071960296,
+      "days": 5642
     },
     "action": {
       "major_cov": 1.0,
@@ -100701,8 +100715,8 @@
       "minor_lead": 15.166666666666666,
       "minor_n_events": 14,
       "fa_all": 33,
-      "fa_all_py": 1.4742067009395496,
-      "days": 5641
+      "fa_all_py": 1.4739454094292803,
+      "days": 5642
     }
   },
   "event_coverage": {
