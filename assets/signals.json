@@ -8937,7 +8937,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "liquidity",
@@ -9255,6 +9254,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress",
         "liquidity",
         "rates",
@@ -9269,7 +9269,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "liquidity",
         "rates",
@@ -9580,6 +9579,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress",
         "liquidity",
         "options",
@@ -9806,9 +9806,7 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": [
-        "credit"
-      ]
+      "alarm": []
     },
     {
       "date": "1996-08-29",
@@ -10058,6 +10056,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress",
         "liquidity",
         "usd"
@@ -38557,6 +38556,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -38572,6 +38572,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -38586,6 +38587,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -38858,7 +38860,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "options",
@@ -38873,7 +38874,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "options",
@@ -38888,7 +38888,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "options",
