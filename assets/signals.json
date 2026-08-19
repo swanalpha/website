@@ -100803,6 +100803,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
+        "options",
         "risk_appetite",
         "usd"
       ]
@@ -100816,6 +100817,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
+        "options",
         "risk_appetite",
         "usd"
       ]
@@ -100829,6 +100831,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
+        "options",
         "risk_appetite",
         "usd"
       ]
