@@ -11112,7 +11112,6 @@
       "alarm": [
         "liquidity",
         "options",
-        "risk_appetite",
         "usd"
       ]
     },
@@ -11564,6 +11563,7 @@
         "equity_internals",
         "liquidity",
         "options",
+        "risk_appetite",
         "usd"
       ]
     },
@@ -101141,10 +101141,24 @@
         "risk_appetite",
         "usd"
       ]
+    },
+    {
+      "date": "2026-09-11",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "equity_internals",
+        "options",
+        "risk_appetite",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-09-10",
+    "date": "2026-09-11",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -101171,8 +101185,8 @@
       "minor_lead": 24.0,
       "minor_n_events": 14,
       "fa_all": 31,
-      "fa_all_py": 1.371729587357331,
-      "days": 5695
+      "fa_all_py": 1.3714887640449438,
+      "days": 5696
     },
     "action": {
       "major_cov": 1.0,
@@ -101182,8 +101196,8 @@
       "minor_lead": 24.0,
       "minor_n_events": 14,
       "fa_all": 23,
-      "fa_all_py": 1.0177348551360843,
-      "days": 5695
+      "fa_all_py": 1.0175561797752808,
+      "days": 5696
     }
   },
   "event_coverage": {
