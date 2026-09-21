@@ -11080,6 +11080,7 @@
         "financial_stress",
         "liquidity",
         "options",
+        "risk_appetite",
         "usd"
       ]
     },
@@ -11535,7 +11536,6 @@
         "equity_internals",
         "liquidity",
         "options",
-        "risk_appetite",
         "usd"
       ]
     },
@@ -19631,6 +19631,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19644,6 +19645,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19657,6 +19659,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19670,6 +19673,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19683,6 +19687,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "usd"
       ]
@@ -19691,10 +19696,11 @@
       "date": "1999-05-26",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
-      "action_reason": null,
+      "action_reason": "usd",
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19704,10 +19710,11 @@
       "date": "1999-05-27",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "rates",
         "usd"
       ]
@@ -19716,10 +19723,11 @@
       "date": "1999-05-28",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19729,10 +19737,11 @@
       "date": "1999-06-01",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19742,10 +19751,11 @@
       "date": "1999-06-02",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19755,11 +19765,12 @@
       "date": "1999-06-03",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19769,11 +19780,12 @@
       "date": "1999-06-04",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19783,11 +19795,12 @@
       "date": "1999-06-07",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19797,11 +19810,12 @@
       "date": "1999-06-08",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19811,11 +19825,12 @@
       "date": "1999-06-09",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19825,11 +19840,12 @@
       "date": "1999-06-10",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19839,11 +19855,12 @@
       "date": "1999-06-11",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19853,11 +19870,12 @@
       "date": "1999-06-14",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19867,11 +19885,12 @@
       "date": "1999-06-15",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19881,11 +19900,12 @@
       "date": "1999-06-16",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19895,11 +19915,12 @@
       "date": "1999-06-17",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19909,11 +19930,12 @@
       "date": "1999-06-18",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19923,11 +19945,12 @@
       "date": "1999-06-21",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19937,11 +19960,12 @@
       "date": "1999-06-22",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19951,11 +19975,12 @@
       "date": "1999-06-23",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19965,11 +19990,12 @@
       "date": "1999-06-24",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates"
       ]
@@ -19983,6 +20009,7 @@
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -19997,6 +20024,7 @@
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -20011,6 +20039,7 @@
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -20025,6 +20054,7 @@
       "action_reason": null,
       "alarm": [
         "credit",
+        "equity_internals",
         "liquidity",
         "rates",
         "usd"
@@ -56049,7 +56079,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56062,7 +56093,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56075,7 +56107,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56088,7 +56121,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56101,7 +56135,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56114,7 +56149,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56127,7 +56163,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56139,7 +56176,8 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity"
+        "liquidity",
+        "risk_appetite"
       ]
     },
     {
@@ -56152,7 +56190,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56165,7 +56204,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56178,7 +56218,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56191,7 +56232,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56204,7 +56246,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56217,7 +56260,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56230,7 +56274,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56243,7 +56288,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56256,7 +56302,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56269,7 +56316,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56282,7 +56330,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56295,7 +56344,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56308,7 +56358,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56321,7 +56372,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56334,7 +56386,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56347,7 +56400,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56360,7 +56414,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56373,7 +56428,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56385,7 +56441,8 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56398,7 +56455,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56411,7 +56469,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56424,7 +56483,8 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options"
+        "options",
+        "risk_appetite"
       ]
     },
     {
@@ -56436,8 +56496,7 @@
       "action_reason": null,
       "alarm": [
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56450,8 +56509,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56464,8 +56522,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56478,8 +56535,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56492,8 +56548,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56506,8 +56561,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56520,8 +56574,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56534,8 +56587,7 @@
       "alarm": [
         "equity_internals",
         "liquidity",
-        "options",
-        "risk_appetite"
+        "options"
       ]
     },
     {
@@ -56547,8 +56599,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56560,8 +56611,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56573,8 +56623,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56586,8 +56635,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56599,8 +56647,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56612,8 +56659,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56625,8 +56671,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56638,8 +56683,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56651,8 +56695,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56664,8 +56707,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56677,8 +56719,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56690,8 +56731,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56703,8 +56743,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56716,8 +56755,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56729,8 +56767,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56742,8 +56779,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56755,8 +56791,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56768,8 +56803,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56781,8 +56815,7 @@
       "action_reason": null,
       "alarm": [
         "equity_internals",
-        "liquidity",
-        "risk_appetite"
+        "liquidity"
       ]
     },
     {
@@ -56793,8 +56826,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
-        "risk_appetite"
+        "equity_internals"
       ]
     },
     {
@@ -56805,8 +56837,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
-        "risk_appetite"
+        "equity_internals"
       ]
     },
     {
@@ -56817,8 +56848,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
-        "risk_appetite"
+        "equity_internals"
       ]
     },
     {
@@ -96548,7 +96578,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -96563,7 +96592,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -96578,7 +96606,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "rates"
       ]
@@ -96591,7 +96618,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "rates",
         "risk_appetite"
@@ -96717,10 +96743,10 @@
     {
       "date": "2025-01-16",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
-      "watch_reason": "rates,risk_appetite",
-      "action_reason": null,
+      "watch_signal": false,
+      "action_signal": true,
+      "watch_reason": null,
+      "action_reason": "credit",
       "alarm": [
         "credit",
         "equity_internals",
@@ -96732,8 +96758,8 @@
     {
       "date": "2025-01-17",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96747,8 +96773,8 @@
     {
       "date": "2025-01-21",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96762,8 +96788,8 @@
     {
       "date": "2025-01-22",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96777,8 +96803,8 @@
     {
       "date": "2025-01-23",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96792,8 +96818,8 @@
     {
       "date": "2025-01-24",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96807,8 +96833,8 @@
     {
       "date": "2025-01-27",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96822,8 +96848,8 @@
     {
       "date": "2025-01-28",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -96837,11 +96863,12 @@
     {
       "date": "2025-01-29",
       "regime": "bull",
-      "watch_signal": true,
-      "action_signal": false,
+      "watch_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "options",
         "rates",
         "risk_appetite"
@@ -96853,7 +96880,7 @@
       "watch_signal": false,
       "action_signal": true,
       "watch_reason": null,
-      "action_reason": "credit",
+      "action_reason": null,
       "alarm": [
         "credit",
         "equity_internals",
@@ -96900,7 +96927,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "options",
         "rates",
@@ -97032,7 +97058,7 @@
       "date": "2025-02-18",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97047,7 +97073,7 @@
       "date": "2025-02-19",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97063,7 +97089,7 @@
       "date": "2025-02-20",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97079,7 +97105,7 @@
       "date": "2025-02-21",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97094,7 +97120,7 @@
       "date": "2025-02-24",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": true,
+      "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97110,7 +97136,7 @@
       "watch_signal": false,
       "action_signal": true,
       "watch_reason": null,
-      "action_reason": null,
+      "action_reason": "financial_stress",
       "alarm": [
         "credit",
         "equity_internals",
@@ -97157,6 +97183,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97167,7 +97194,7 @@
       "date": "2025-03-03",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97182,7 +97209,7 @@
       "date": "2025-03-04",
       "regime": "bull",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97197,7 +97224,7 @@
       "date": "2025-03-05",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
@@ -97212,11 +97239,10 @@
       "date": "2025-03-06",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97227,11 +97253,10 @@
       "date": "2025-03-07",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97242,11 +97267,10 @@
       "date": "2025-03-10",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97257,11 +97281,10 @@
       "date": "2025-03-11",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97272,11 +97295,10 @@
       "date": "2025-03-12",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97287,11 +97309,10 @@
       "date": "2025-03-13",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -97302,11 +97323,10 @@
       "date": "2025-03-14",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97316,11 +97336,10 @@
       "date": "2025-03-17",
       "regime": "neutral",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97330,11 +97349,10 @@
       "date": "2025-03-18",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97344,11 +97362,10 @@
       "date": "2025-03-19",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97358,11 +97375,10 @@
       "date": "2025-03-20",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97372,11 +97388,10 @@
       "date": "2025-03-21",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97386,11 +97401,10 @@
       "date": "2025-03-24",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97400,11 +97414,10 @@
       "date": "2025-03-25",
       "regime": "bear",
       "watch_signal": false,
-      "action_signal": false,
+      "action_signal": true,
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97418,7 +97431,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97432,7 +97444,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -97446,7 +97457,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates",
         "risk_appetite"
@@ -100506,7 +100516,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-04-24",
@@ -100515,7 +100527,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-04-27",
@@ -100524,7 +100538,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-04-28",
@@ -100533,7 +100549,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-04-29",
@@ -100542,7 +100560,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-04-30",
@@ -100551,7 +100571,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-01",
@@ -100560,7 +100582,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-04",
@@ -100569,7 +100593,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-05",
@@ -100578,7 +100604,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-06",
@@ -100587,7 +100615,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-07",
@@ -100596,7 +100626,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2026-05-08",
@@ -100606,6 +100638,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100617,6 +100650,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100628,6 +100662,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100639,6 +100674,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100650,6 +100686,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100661,6 +100698,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100672,6 +100710,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100683,6 +100722,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -100694,6 +100734,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress"
       ]
     },
@@ -101699,10 +101740,22 @@
         "options",
         "usd"
       ]
+    },
+    {
+      "date": "2026-09-21",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "options",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-09-18",
+    "date": "2026-09-21",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -101726,20 +101779,20 @@
       "minor_cov": 0.42857142857142855,
       "minor_lead": 21.833333333333332,
       "minor_n_events": 14,
-      "fa_all": 55,
-      "fa_all_py": 2.431152429398351,
-      "days": 5701
+      "fa_all": 57,
+      "fa_all_py": 2.5191160996141706,
+      "days": 5702
     },
     "action": {
       "major_cov": 1.0,
-      "major_lead": 16.0,
+      "major_lead": 17.125,
       "major_n_events": 8,
       "minor_cov": 0.42857142857142855,
       "minor_lead": 19.333333333333332,
       "minor_n_events": 14,
-      "fa_all": 38,
-      "fa_all_py": 1.6797053148570427,
-      "days": 5701
+      "fa_all": 40,
+      "fa_all_py": 1.7678007716590671,
+      "days": 5702
     }
   },
   "event_coverage": {
@@ -102088,7 +102141,7 @@
         "event_name": "2025",
         "onset_date": "2025-02-19",
         "covered": true,
-        "lead_td": 13.0
+        "lead_td": 22.0
       },
       {
         "event_id": "minor:2026-01-27:24",
