@@ -83916,6 +83916,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -83930,6 +83931,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "equity_internals",
         "financial_stress",
         "rates",
@@ -84194,7 +84196,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "rates"
       ]
@@ -84221,6 +84222,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "financial_stress",
         "options",
         "rates"
@@ -84493,7 +84495,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "options",
         "risk_appetite"
@@ -84507,7 +84508,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "financial_stress",
         "options",
         "risk_appetite"
@@ -101720,10 +101720,22 @@
         "financial_stress",
         "usd"
       ]
+    },
+    {
+      "date": "2026-10-07",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "financial_stress",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-10-06",
+    "date": "2026-10-07",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -101748,8 +101760,8 @@
       "minor_lead": 8.4,
       "minor_n_events": 14,
       "fa_all": 21,
-      "fa_all_py": 0.9263084193943637,
-      "days": 5713
+      "fa_all_py": 0.9261463073153658,
+      "days": 5714
     },
     "action": {
       "major_cov": 1.0,
@@ -101759,8 +101771,8 @@
       "minor_lead": 7.2,
       "minor_n_events": 14,
       "fa_all": 15,
-      "fa_all_py": 0.6616488709959741,
-      "days": 5713
+      "fa_all_py": 0.6615330766538328,
+      "days": 5714
     }
   },
   "event_coverage": {
