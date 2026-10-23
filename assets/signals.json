@@ -31098,7 +31098,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "rates",
         "risk_appetite"
       ]
@@ -31376,6 +31375,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "rates",
         "risk_appetite",
         "usd"
@@ -31389,7 +31389,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "rates",
         "risk_appetite",
         "usd"
@@ -31655,6 +31654,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "rates",
         "usd"
       ]
@@ -31667,7 +31667,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "rates",
         "usd"
       ]
@@ -31920,7 +31919,9 @@
       "action_signal": false,
       "watch_reason": null,
       "action_reason": null,
-      "alarm": []
+      "alarm": [
+        "credit"
+      ]
     },
     {
       "date": "2004-01-06",
@@ -31930,7 +31931,6 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit",
         "usd"
       ]
     },
@@ -32170,6 +32170,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
+        "credit",
         "usd"
       ]
     },
@@ -93295,8 +93296,7 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "equity_internals",
-        "risk_appetite"
+        "equity_internals"
       ]
     },
     {
@@ -93652,7 +93652,8 @@
       "watch_reason": null,
       "action_reason": null,
       "alarm": [
-        "credit"
+        "credit",
+        "risk_appetite"
       ]
     },
     {
@@ -101456,10 +101457,24 @@
         "options",
         "usd"
       ]
+    },
+    {
+      "date": "2026-10-23",
+      "regime": "bull",
+      "watch_signal": false,
+      "action_signal": false,
+      "watch_reason": null,
+      "action_reason": null,
+      "alarm": [
+        "credit",
+        "financial_stress",
+        "options",
+        "usd"
+      ]
     }
   ],
   "latest": {
-    "date": "2026-10-22",
+    "date": "2026-10-23",
     "regime": "bull",
     "watch_signal": false,
     "action_signal": false,
@@ -101486,8 +101501,8 @@
       "minor_lead": 9.5,
       "minor_n_events": 14,
       "fa_all": 18,
-      "fa_all_py": 0.7923144104803493,
-      "days": 5725
+      "fa_all_py": 0.7921760391198044,
+      "days": 5726
     },
     "action": {
       "major_cov": 1.0,
@@ -101497,8 +101512,8 @@
       "minor_lead": 9.5,
       "minor_n_events": 14,
       "fa_all": 15,
-      "fa_all_py": 0.6602620087336245,
-      "days": 5725
+      "fa_all_py": 0.6601466992665037,
+      "days": 5726
     }
   },
   "event_coverage": {
